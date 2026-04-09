@@ -21,8 +21,8 @@
     },
     "links": [
       {
-        "label": "wiki",
-        "href": "/wiki"
+        "label": "Войти в систему",
+        "href": "https://account.yume.cloud/auth"
       }
     ]
   },
