@@ -1,0 +1,101 @@
+---
+title: "Billing"
+description: "How billing and invoicing work in Yume Cloud."
+---
+
+Billing in Yume Cloud is the process of generating invoices and collecting payments for rentals and services. When a rental is created or completed, Yume Cloud can automatically produce an itemized invoice that tracks what the client owes, the due date, and the current payment status.
+
+Invoices are settled through [Transactions](/concepts/transactions), which record each payment or adjustment applied against the outstanding balance.
+
+## Billing cycle
+
+Invoices are generated at two points:
+
+- **On rental completion** — a final invoice is automatically produced when a rental transitions to `completed` status, capturing all charges for the full rental period.
+- **On a recurring schedule** — for long-running rentals, invoices can be generated at regular intervals (e.g., weekly or monthly) to enable periodic billing.
+
+<Tip>
+  Yume Cloud automatically generates a final invoice when a rental is marked as `completed`. You do not need to create the invoice manually — just ensure the rental's pricing and client details are correct before closing the rental.
+</Tip>
+
+## Key billing entities
+
+### Invoice
+
+An itemized bill for a rental period. An invoice records the total amount owed, the due date, and the payment status.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique identifier for the invoice. |
+| `rental_id` | string | The rental this invoice is associated with. |
+| `client_id` | string | The client this invoice is billed to. |
+| `amount` | number | Total amount due on this invoice. |
+| `status` | string | Current state: `draft`, `sent`, `paid`, or `overdue`. |
+| `due_date` | string (ISO 8601) | The date by which payment must be received. |
+
+#### Invoice statuses
+
+| Status | Description |
+|--------|-------------|
+| `draft` | The invoice has been created but is not yet finalized. Line items and amounts may still change. |
+| `sent` | The invoice has been finalized and delivered to the client for payment. |
+| `paid` | The full amount has been collected. The invoice is closed. |
+| `overdue` | The `due_date` has passed and the invoice has not been fully paid. |
+
+### Payment
+
+The settlement of an invoice. Each payment is recorded as a [Transaction](/concepts/transactions) of type `payment`, linked to the rental via `rental_id`. The invoice balance decreases as payment transactions are completed.
+
+### Balance
+
+The outstanding amount owed on an invoice, calculated as the difference between `amount` and the sum of all completed `payment` transactions linked to that invoice. When the balance reaches zero, the invoice moves to `paid`.
+
+## Retrieve billing history
+
+Use `GET /billing` to retrieve a paginated list of invoices. Filter by rental, status, or date range.
+
+```bash
+curl --request GET \
+  --url 'https://api.yume.cloud/billing' \
+  --header 'Authorization: Bearer <token>'
+```
+
+**Common query parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `rental_id` | string | Return invoices for a specific rental. |
+| `client_id` | string | Return invoices for a specific client. |
+| `status` | string | Filter by invoice state: `draft`, `sent`, `paid`, or `overdue`. |
+| `from` | string (ISO 8601) | Return invoices created on or after this date. |
+| `to` | string (ISO 8601) | Return invoices created on or before this date. |
+
+## Record a payment
+
+Use `POST /billing/payments` to record a payment against an invoice. This creates a transaction of type `payment` and updates the invoice balance.
+
+```bash
+curl --request POST \
+  --url https://api.yume.cloud/billing/payments \
+  --header 'Authorization: Bearer <token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "invoice_id": "inv_07PQRS3456MNOP",
+    "amount": 420.00,
+    "currency": "USD",
+    "method": "card"
+  }'
+```
+
+**Example request body:**
+
+```json
+{
+  "invoice_id": "inv_07PQRS3456MNOP",
+  "amount": 420.00,
+  "currency": "USD",
+  "method": "card"
+}
+```
+
+On success, the API returns the created transaction object and the updated invoice balance.

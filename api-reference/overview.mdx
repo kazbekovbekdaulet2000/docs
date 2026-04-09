@@ -1,0 +1,147 @@
+---
+title: "Overview"
+description: "Everything you need to know to start using the Yume Cloud REST API."
+---
+
+The Yume Cloud REST API lets you manage rentals, sales, transactions, GPS tracking, billing, documents, and more from a single, consistent interface.
+
+## Base URL
+
+All API requests are made to:
+
+```
+https://api.yume.cloud
+```
+
+The API uses **HTTPS only**. HTTP requests are not supported.
+
+## Request format
+
+All requests and responses use JSON. Include the following headers on every request:
+
+```
+Content-Type: application/json
+Accept: application/json
+```
+
+## Authentication
+
+The API uses Bearer token authentication. Include your token in the `Authorization` header on every request:
+
+```
+Authorization: Bearer <your_token>
+```
+
+To obtain a token, call `POST /auth/login`. See the [Authentication](/api-reference/authentication) page for full details.
+
+## Versioning
+
+The API is currently at version 1. There is no explicit version prefix in the URL — v1 is implicit in all endpoints.
+
+## Rate limiting
+
+All API requests are rate-limited. If you exceed the limit, the API returns a `429 Too Many Requests` response. When this happens, wait before retrying the request. Check the `Retry-After` header in the response for guidance on when to retry.
+
+## Pagination
+
+List endpoints return paginated results. Use the `page` and `per_page` query parameters to control which page of results you receive.
+
+```
+GET /rentals?page=2&per_page=20
+```
+
+Every paginated response includes the following fields:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `data` | array | The list of results for the current page |
+| `page` | number | The current page number |
+| `per_page` | number | The number of results per page |
+| `total` | number | The total number of results across all pages |
+
+Example paginated response:
+
+```json
+{
+  "data": [...],
+  "page": 2,
+  "per_page": 20,
+  "total": 150
+}
+```
+
+## Error responses
+
+All errors follow a standard format:
+
+```json
+{
+  "error": "not_found",
+  "message": "Rental with ID abc123 was not found",
+  "code": 404
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `error` | string | Machine-readable error code |
+| `message` | string | Human-readable description of the error |
+| `code` | number | HTTP status code |
+
+## HTTP status codes
+
+| Code | Meaning |
+|------|---------|
+| 200 | Success |
+| 201 | Created |
+| 400 | Bad Request — invalid parameters |
+| 401 | Unauthorized — missing or invalid token |
+| 403 | Forbidden — insufficient permissions |
+| 404 | Not Found |
+| 422 | Unprocessable Entity — validation error |
+| 429 | Too Many Requests |
+| 500 | Internal Server Error |
+
+## API resources
+
+<CardGroup cols={2}>
+  <Card title="Rentals" icon="key" href="/api-reference/rentals">
+    Create and manage the full rental lifecycle
+  </Card>
+  <Card title="Sales" icon="tag" href="/api-reference/sales">
+    Process and track sales orders
+  </Card>
+  <Card title="Transactions" icon="credit-card" href="/api-reference/transactions">
+    Payments and financial records
+  </Card>
+  <Card title="Analytics" icon="chart-bar" href="/api-reference/analytics">
+    Reports and usage insights
+  </Card>
+  <Card title="Billing" icon="receipt" href="/api-reference/billing">
+    Invoices and billing cycles
+  </Card>
+  <Card title="Documents" icon="file-lines" href="/api-reference/documents">
+    Generate and manage documents
+  </Card>
+  <Card title="Attachments" icon="paperclip" href="/api-reference/attachments">
+    Upload and manage file attachments
+  </Card>
+  <Card title="GPS" icon="location-dot" href="/api-reference/gps">
+    Real-time asset location tracking
+  </Card>
+  <Card title="Notifications" icon="bell" href="/api-reference/notifications">
+    Manage alerts and notifications
+  </Card>
+  <Card title="Workshop" icon="wrench" href="/api-reference/workshop">
+    Service and maintenance management
+  </Card>
+  <Card title="Store" icon="store" href="/api-reference/store">
+    Inventory and product catalogue
+  </Card>
+  <Card title="Integrations" icon="plug" href="/api-reference/integrations">
+    Connect third-party services
+  </Card>
+  <Card title="Access Rights" icon="shield" href="/api-reference/access-rights">
+    User roles and permissions
+  </Card>
+</CardGroup>

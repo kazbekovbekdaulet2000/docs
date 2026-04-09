@@ -1,0 +1,88 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "Yume Cloud",
+  "theme": "luma",
+  "colors": {
+    "primary": "#6C3CE1",
+    "light": "#EDE8FB",
+    "dark": "#3B1FA8"
+  },
+  "navbar": {
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/yume-cloud"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "authentication",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "concepts/rentals",
+              "concepts/transactions",
+              "concepts/billing"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/managing-rentals",
+              "guides/processing-payments",
+              "guides/gps-tracking",
+              "guides/integrations"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "configuration/settings",
+              "configuration/access-rights",
+              "configuration/notifications"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api-reference/overview",
+              "api-reference/authentication"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "api-reference/rentals",
+              "api-reference/sales",
+              "api-reference/transactions",
+              "api-reference/analytics",
+              "api-reference/billing",
+              "api-reference/documents",
+              "api-reference/attachments",
+              "api-reference/gps",
+              "api-reference/notifications",
+              "api-reference/workshop",
+              "api-reference/store",
+              "api-reference/integrations",
+              "api-reference/access-rights"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

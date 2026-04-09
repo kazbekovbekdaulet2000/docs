@@ -1,0 +1,77 @@
+---
+title: "Authentication"
+description: "How to authenticate your requests to the Yume Cloud API."
+---
+
+The Yume Cloud API uses Bearer tokens for authentication. You obtain a token by sending your credentials to `POST /auth/login`, then include it in the `Authorization` header on every request.
+
+<Note>
+  All API requests require a valid Bearer token. Requests without a token, or with an expired or malformed token, will return `401 Unauthorized`.
+</Note>
+
+## Obtaining a token
+
+Send your username and password as a JSON body to `POST /auth/login`:
+
+```bash
+curl -X POST https://api.yume.cloud/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username": "your@email.com", "password": "your_password"}'
+```
+
+A successful response returns the access token and its expiry time:
+
+```json
+{
+  "token": "eyJhbGci...",
+  "expires_at": "2026-04-09T12:00:00Z"
+}
+```
+
+Store the `token` value — you will pass it in every subsequent request.
+
+## Using the token
+
+Include the token in the `Authorization` header using the `Bearer` scheme:
+
+```bash
+curl https://api.yume.cloud/rentals \
+  -H "Authorization: Bearer eyJhbGci..."
+```
+
+The header must follow this exact format:
+
+```
+Authorization: Bearer <your-token>
+```
+
+<Warning>
+  Never expose your token in client-side code, public repositories, or URLs. Anyone with access to your token can make API requests on your behalf. Store tokens in environment variables or a secrets manager.
+</Warning>
+
+## Token expiry and renewal
+
+Tokens expire at the time indicated in `expires_at`. When a token expires, re-authenticate by calling `POST /auth/login` again with your credentials:
+
+```bash
+curl -X POST https://api.yume.cloud/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username": "your@email.com", "password": "your_password"}'
+```
+
+<Tip>
+  If you receive a `401` on a previously working request, your token has likely expired. Implement automatic re-authentication in your client to avoid interrupting your workflows.
+</Tip>
+
+## Authentication errors
+
+| Status code | Meaning | What to do |
+|---|---|---|
+| `401 Unauthorized` | The token is missing, malformed, or expired. | Re-authenticate using `POST /auth/login` to get a new token. |
+| `403 Forbidden` | The token is valid but your account lacks permission for the requested resource. | Check your account's access rights or contact your administrator. |
+
+## Security best practices
+
+- Always use the `Authorization` header — never pass tokens as URL query parameters.
+- Use environment variables or a secrets manager to store tokens, not source code.
+- Rotate credentials immediately if you suspect they have been compromised.

@@ -1,0 +1,149 @@
+---
+title: "Managing rentals"
+description: "How to create, update, and close rentals using the Yume Cloud API."
+---
+
+This guide covers the full rental lifecycle — from creating a new rental through activation, completion, and cancellation.
+
+<Steps>
+  <Step title="Create a rental">
+    Send a `POST /rentals` request with the asset ID, client ID, and rental dates.
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl --request POST \
+      --url https://api.yume.cloud/rentals \
+      --header 'Authorization: Bearer <your-access-token>' \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "asset_id": "asset_xyz789",
+        "client_id": "client_abc123",
+        "start_date": "2026-04-10",
+        "end_date": "2026-04-20"
+      }'
+    ```
+
+    ```json Response
+    {
+      "id": "rent_4f8a1c2d",
+      "status": "created",
+      "asset_id": "asset_xyz789",
+      "client_id": "client_abc123",
+      "start_date": "2026-04-10",
+      "end_date": "2026-04-20",
+      "created_at": "2026-04-09T10:00:00Z"
+    }
+    ```
+
+    </CodeGroup>
+
+    Save the `id` value from the response — you'll use it in subsequent requests.
+  </Step>
+
+  <Step title="Activate a rental">
+    Once you're ready to begin the rental, update its status to `active`.
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl --request PUT \
+      --url https://api.yume.cloud/rentals/rent_4f8a1c2d \
+      --header 'Authorization: Bearer <your-access-token>' \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "status": "active"
+      }'
+    ```
+
+    ```json Response
+    {
+      "id": "rent_4f8a1c2d",
+      "status": "active",
+      "asset_id": "asset_xyz789",
+      "client_id": "client_abc123",
+      "start_date": "2026-04-10",
+      "end_date": "2026-04-20",
+      "updated_at": "2026-04-10T09:00:00Z"
+    }
+    ```
+
+    </CodeGroup>
+  </Step>
+
+  <Step title="List active rentals">
+    Retrieve all rentals currently in `active` status using the `status` query parameter.
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl --request GET \
+      --url 'https://api.yume.cloud/rentals?status=active' \
+      --header 'Authorization: Bearer <your-access-token>'
+    ```
+
+    ```json Response
+    [
+      {
+        "id": "rent_4f8a1c2d",
+        "status": "active",
+        "asset_id": "asset_xyz789",
+        "client_id": "client_abc123",
+        "start_date": "2026-04-10",
+        "end_date": "2026-04-20",
+        "created_at": "2026-04-09T10:00:00Z"
+      },
+      {
+        "id": "rent_7b3e9d1a",
+        "status": "active",
+        "asset_id": "asset_pqr456",
+        "client_id": "client_def456",
+        "start_date": "2026-04-08",
+        "end_date": "2026-04-15",
+        "created_at": "2026-04-07T08:30:00Z"
+      }
+    ]
+    ```
+
+    </CodeGroup>
+
+    <Tip>
+      You can filter rentals by `status`, `client_id`, `asset_id`, `start_date`, and `end_date` query parameters. Combine them to narrow results — for example, `?status=active&client_id=client_abc123`.
+    </Tip>
+  </Step>
+
+  <Step title="Complete a rental">
+    When the rental period ends, mark it as `completed`. This triggers automatic invoice generation for the rental.
+
+    ```bash cURL
+    curl --request PUT \
+      --url https://api.yume.cloud/rentals/rent_4f8a1c2d \
+      --header 'Authorization: Bearer <your-access-token>' \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "status": "completed"
+      }'
+    ```
+
+    After the update, an invoice is created and linked to the rental. Use `GET /billing?rental_id=rent_4f8a1c2d` to retrieve it.
+  </Step>
+
+  <Step title="Cancel a rental">
+    To cancel a rental before it is completed, set the status to `cancelled`. You can include an optional `reason` field.
+
+    ```bash cURL
+    curl --request PUT \
+      --url https://api.yume.cloud/rentals/rent_4f8a1c2d \
+      --header 'Authorization: Bearer <your-access-token>' \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "status": "cancelled",
+        "reason": "Client requested cancellation"
+      }'
+    ```
+
+    <Warning>
+      Cancellation may trigger cancellation fees depending on your business policy. Review your account's billing rules before cancelling an active rental.
+    </Warning>
+  </Step>
+</Steps>

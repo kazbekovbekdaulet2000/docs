@@ -1,0 +1,63 @@
+---
+title: "Rentals"
+description: "Understand how rentals work in Yume Cloud."
+---
+
+A rental in Yume Cloud is a time-bound agreement that grants a client the right to use an asset — such as equipment, a vehicle, or a property — for a defined period. Each rental ties together the asset, the customer, the rental window, and the total cost into a single trackable record.
+
+## Rental lifecycle
+
+Rentals move through a defined set of states from creation to closure.
+
+```
+Created → Active → Completed
+                 ↘ Cancelled
+```
+
+### Status transitions
+
+| From | To | Trigger |
+|------|----|---------|
+| `created` | `active` | Asset handed over to client |
+| `active` | `completed` | Asset returned at or after `end_date` |
+| `active` | `cancelled` | Early termination requested |
+| `created` | `cancelled` | Rental voided before activation |
+
+| Status | Description |
+|--------|-------------|
+| `created` | The rental has been recorded but the asset has not yet been handed over. |
+| `active` | The asset is in use by the client within the agreed rental period. |
+| `completed` | The rental period has ended and the asset has been returned. |
+| `cancelled` | The rental was terminated before or during the active period. |
+
+<Note>
+  When a rental reaches `completed` status, Yume Cloud automatically triggers the generation of a final invoice as a Document. Ensure the client's billing details are up to date before completing a rental.
+</Note>
+
+## Key fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique identifier for the rental. |
+| `status` | string | Current state: `created`, `active`, `completed`, or `cancelled`. |
+| `asset_id` | string | The identifier of the asset being rented. |
+| `client_id` | string | The identifier of the customer associated with the rental. |
+| `start_date` | string (ISO 8601) | The date and time the rental period begins. |
+| `end_date` | string (ISO 8601) | The date and time the rental period ends. |
+| `total_amount` | number | The calculated total cost for the rental period. |
+| `created_at` | string (ISO 8601) | Timestamp of when the rental record was created. |
+| `updated_at` | string (ISO 8601) | Timestamp of the most recent update to the rental record. |
+
+## Relationships
+
+### Transactions
+
+Payments collected against a rental are recorded as [Transactions](/concepts/transactions). Each transaction references the rental via `rental_id`, allowing you to track payments, deposits, and refunds tied to a specific rental.
+
+### Documents
+
+Invoices and contracts are generated and stored as Documents. When a rental transitions to `completed`, a final invoice Document is created automatically. You can also generate draft invoices or contracts at any point during the rental lifecycle.
+
+### GPS
+
+If the rented asset is GPS-enabled, its real-time location and movement history are accessible through the GPS endpoints. Use this to monitor asset usage, verify return locations, and detect unauthorized movement during an active rental.

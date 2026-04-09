@@ -1,0 +1,98 @@
+---
+title: "Notifications"
+description: "Set up and manage notifications for important events in Yume Cloud."
+---
+
+Yume Cloud generates notifications when key events occur in your workspace — rental status changes, incoming payments, overdue invoices, and GPS geofence alerts. You can retrieve and manage these notifications via the API or receive them in real time via webhooks.
+
+## List notifications
+
+Retrieve notifications for the authenticated user, ordered by most recent first.
+
+```bash cURL
+curl --request GET \
+  --url https://api.yume.cloud/notifications \
+  --header 'Authorization: Bearer <token>'
+```
+
+**Example response**
+
+```json 200
+{
+  "data": [
+    {
+      "id": "ntf_01a3b5c7d9",
+      "type": "payment_received",
+      "message": "Payment of $250.00 received for rental #RNT-1042.",
+      "read": false,
+      "created_at": "2026-04-09T10:55:00Z"
+    },
+    {
+      "id": "ntf_02e4f6g8h0",
+      "type": "rental_overdue",
+      "message": "Rental #RNT-1038 passed its end date on 2026-04-07.",
+      "read": true,
+      "created_at": "2026-04-08T00:01:00Z"
+    },
+    {
+      "id": "ntf_03i5j7k9l1",
+      "type": "gps_alert",
+      "message": "Asset #AST-204 left the designated geofence at 09:32 UTC.",
+      "read": false,
+      "created_at": "2026-04-09T09:32:45Z"
+    }
+  ],
+  "total": 3,
+  "unread": 2
+}
+```
+
+## Mark a notification as read
+
+Update a single notification to mark it as read.
+
+```bash cURL
+curl --request PUT \
+  --url https://api.yume.cloud/notifications/ntf_01a3b5c7d9 \
+  --header 'Authorization: Bearer <token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "read": true
+  }'
+```
+
+**Example response**
+
+```json 200
+{
+  "id": "ntf_01a3b5c7d9",
+  "type": "payment_received",
+  "message": "Payment of $250.00 received for rental #RNT-1042.",
+  "read": true,
+  "created_at": "2026-04-09T10:55:00Z",
+  "updated_at": "2026-04-09T11:20:00Z"
+}
+```
+
+## Notification types
+
+| Type | Trigger |
+|---|---|
+| `rental_created` | A new rental was created |
+| `rental_due` | A rental is approaching its end date |
+| `rental_overdue` | A rental has passed its end date |
+| `payment_received` | A payment was recorded |
+| `invoice_overdue` | An invoice is past due |
+| `gps_alert` | A GPS-tracked asset left a geofence |
+
+## Notification preferences
+
+You can control which notification channels are active (email, SMS, in-app) on a per-user basis via the `/settings` endpoint. See [Settings](/configuration/settings) for the full list of preference fields and how to update them.
+
+## Webhook notifications
+
+In addition to polling the API, Yume Cloud can push event payloads to an HTTPS endpoint of your choice. Webhook delivery is configured through the Integrations API — see [Integrations](/guides/integrations) for setup instructions and the full list of subscribable events.
+
+<Tip>
+For low-latency use cases, prefer webhooks over polling `GET /notifications`. Polling is suitable for dashboards that refresh on a schedule; webhooks are better suited for automated workflows that need to react immediately to events such as `gps_alert` or `payment_received`.
+</Tip>

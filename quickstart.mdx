@@ -1,0 +1,116 @@
+---
+title: "Quick Start"
+description: "Make your first Yume Cloud API call in under 5 minutes."
+---
+
+This guide walks you through authenticating with the Yume Cloud API, creating a rental, and checking its status — the core loop of the platform.
+
+## Prerequisites
+
+- A Yume Cloud account with API credentials (username and password). Contact your administrator if you don't have them yet.
+- `curl` or any HTTP client. All examples use `curl`.
+
+<Note>
+  All requests go to `https://api.yume.cloud`. The API only accepts HTTPS.
+</Note>
+
+---
+
+<Steps>
+  <Step title="Log in and get a token">
+    Exchange your credentials for a Bearer token. You'll use this token in every subsequent request.
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl -X POST https://api.yume.cloud/auth/login \
+      -H "Content-Type: application/json" \
+      -d '{"username": "your@email.com", "password": "your_password"}'
+    ```
+
+    ```json Response
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "expires_at": "2026-04-09T12:00:00Z"
+    }
+    ```
+
+    </CodeGroup>
+
+    Copy the value of `token`. You'll pass it as `Bearer <token>` in the `Authorization` header for all remaining steps.
+  </Step>
+
+  <Step title="Create your first rental">
+    Create a rental record by sending a minimal JSON body to `POST /rentals`.
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl -X POST https://api.yume.cloud/rentals \
+      -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." \
+      -H "Content-Type: application/json" \
+      -d '{
+        "customer_id": "cust_abc123",
+        "asset_id": "asset_xyz789",
+        "start_date": "2026-04-10T09:00:00Z",
+        "end_date": "2026-04-17T09:00:00Z"
+      }'
+    ```
+
+    ```json Response
+    {
+      "id": "rent_19a2c4f8",
+      "status": "active",
+      "customer_id": "cust_abc123",
+      "asset_id": "asset_xyz789",
+      "start_date": "2026-04-10T09:00:00Z",
+      "end_date": "2026-04-17T09:00:00Z",
+      "created_at": "2026-04-09T14:22:01Z"
+    }
+    ```
+
+    </CodeGroup>
+
+    Save the `id` value from the response (e.g. `rent_19a2c4f8`). You'll use it in the next step.
+
+    <Tip>
+      `customer_id` and `asset_id` must refer to existing records in your account. Use `GET /rentals` or your account dashboard to look up valid IDs before creating a rental.
+    </Tip>
+  </Step>
+
+  <Step title="Check the rental status">
+    Retrieve the rental you just created by passing its ID to `GET /rentals/{id}`.
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl https://api.yume.cloud/rentals/rent_19a2c4f8 \
+      -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    ```
+
+    ```json Response
+    {
+      "id": "rent_19a2c4f8",
+      "status": "active",
+      "customer_id": "cust_abc123",
+      "asset_id": "asset_xyz789",
+      "start_date": "2026-04-10T09:00:00Z",
+      "end_date": "2026-04-17T09:00:00Z",
+      "created_at": "2026-04-09T14:22:01Z",
+      "updated_at": "2026-04-09T14:22:01Z"
+    }
+    ```
+
+    </CodeGroup>
+
+    A `status` of `active` means the rental is open and running. Other possible values are `pending`, `completed`, and `cancelled`.
+  </Step>
+
+  <Step title="Next steps">
+    You've authenticated, created a rental, and retrieved its status. Here's where to go from here:
+
+    - [Rental concepts](/concepts/rentals) — understand the full rental lifecycle, statuses, and fields
+    - [Managing rentals](/guides/managing-rentals) — update, close, and manage rentals end to end
+    - [API reference](/api-reference/overview) — browse every endpoint available in the Yume Cloud API
+  </Step>
+</Steps>

@@ -1,0 +1,93 @@
+---
+title: "Authentication"
+description: "API reference for the Yume Cloud authentication endpoints."
+---
+
+The Yume Cloud API uses Bearer token authentication. You obtain a token by calling `POST /auth/login` with your account credentials. Pass the token in the `Authorization` header on all subsequent requests.
+
+<Note>
+  All API endpoints — except `POST /auth/login` — require a valid Bearer token. Requests without a token return `401 Unauthorized`.
+</Note>
+
+## POST /auth/login
+
+Authenticate with your Yume Cloud credentials and obtain a Bearer token.
+
+### Request body
+
+<ParamField body="username" type="string" required>
+  Your account email address.
+</ParamField>
+
+<ParamField body="password" type="string" required>
+  Your account password.
+</ParamField>
+
+### Example request
+
+```bash cURL
+curl --request POST \
+  --url https://api.yume.cloud/auth/login \
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  --data '{
+    "username": "you@example.com",
+    "password": "your_password"
+  }'
+```
+
+### Response fields
+
+<ResponseField name="token" type="string">
+  The Bearer token to use in the `Authorization` header for all subsequent requests.
+</ResponseField>
+
+<ResponseField name="expires_at" type="string">
+  ISO 8601 datetime indicating when the token expires. After this time, obtain a new token by calling `POST /auth/login` again.
+</ResponseField>
+
+<ResponseField name="user_id" type="string">
+  Your Yume Cloud account ID.
+</ResponseField>
+
+### Example response
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "expires_at": "2026-04-10T12:00:00Z",
+  "user_id": "usr_abc123"
+}
+```
+
+### Error responses
+
+| Status | Error | Description |
+|--------|-------|-------------|
+| 400 | `bad_request` | Required fields are missing from the request body |
+| 401 | `invalid_credentials` | The username or password is incorrect |
+
+## Using the token
+
+Pass the token as a Bearer token in the `Authorization` header on every API request:
+
+```
+Authorization: Bearer <token>
+```
+
+Example:
+
+```bash cURL
+curl --request GET \
+  --url https://api.yume.cloud/rentals \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' \
+  --header 'Accept: application/json'
+```
+
+## Token expiry
+
+Tokens expire at the datetime returned in the `expires_at` field. When a token expires, requests return `401 Unauthorized`. Call `POST /auth/login` again with your credentials to obtain a new token.
+
+<Warning>
+  Never share your token or include it in URLs or query parameters. Treat it like a password. Anyone with your token can make API calls on your behalf.
+</Warning>

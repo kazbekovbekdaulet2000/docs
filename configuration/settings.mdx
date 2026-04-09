@@ -1,0 +1,136 @@
+---
+title: "Settings"
+description: "Configure your Yume Cloud account and workspace settings."
+---
+
+Yume Cloud settings let you customize how the platform behaves for your organization. The API exposes two groups of settings:
+
+- **Configuration** — global platform settings that apply across your entire workspace (currency, timezone, rental policies)
+- **Settings** — user-level preferences scoped to the authenticated user (language, date format, notifications)
+
+## Retrieve configuration
+
+Fetch the current global configuration for your workspace.
+
+```bash cURL
+curl --request GET \
+  --url https://api.yume.cloud/configuration \
+  --header 'Authorization: Bearer <token>'
+```
+
+**Example response**
+
+```json 200
+{
+  "currency": "USD",
+  "timezone": "America/New_York",
+  "rental_policies": {
+    "max_rental_duration_days": 30,
+    "require_deposit": true,
+    "late_fee_per_day": 15.00
+  },
+  "invoice_prefix": "INV",
+  "date_format": "MM/DD/YYYY",
+  "created_at": "2024-01-15T08:00:00Z",
+  "updated_at": "2025-03-20T14:22:10Z"
+}
+```
+
+## Update configuration
+
+Send a `PUT` request with a JSON body containing only the fields you want to change. Omitted fields remain unchanged.
+
+```bash cURL
+curl --request PUT \
+  --url https://api.yume.cloud/configuration \
+  --header 'Authorization: Bearer <token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "currency": "EUR",
+    "timezone": "Europe/Moscow"
+  }'
+```
+
+**Example response**
+
+```json 200
+{
+  "currency": "EUR",
+  "timezone": "Europe/Moscow",
+  "rental_policies": {
+    "max_rental_duration_days": 30,
+    "require_deposit": true,
+    "late_fee_per_day": 15.00
+  },
+  "invoice_prefix": "INV",
+  "date_format": "MM/DD/YYYY",
+  "updated_at": "2026-04-09T11:05:33Z"
+}
+```
+
+## User-level settings
+
+User settings are scoped to the authenticated user and control personal preferences.
+
+### Retrieve settings
+
+```bash cURL
+curl --request GET \
+  --url https://api.yume.cloud/settings \
+  --header 'Authorization: Bearer <token>'
+```
+
+**Example response**
+
+```json 200
+{
+  "language": "en",
+  "date_format": "DD/MM/YYYY",
+  "notification_preferences": {
+    "email": true,
+    "sms": false,
+    "in_app": true
+  },
+  "timezone_override": null,
+  "updated_at": "2026-02-14T09:30:00Z"
+}
+```
+
+### Update settings
+
+```bash cURL
+curl --request PUT \
+  --url https://api.yume.cloud/settings \
+  --header 'Authorization: Bearer <token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "language": "fr",
+    "date_format": "DD/MM/YYYY",
+    "notification_preferences": {
+      "email": true,
+      "sms": true,
+      "in_app": true
+    }
+  }'
+```
+
+## Configuration fields reference
+
+| Field | Type | Description |
+|---|---|---|
+| `currency` | string | ISO 4217 currency code used for pricing and invoices (e.g. `USD`, `EUR`) |
+| `timezone` | string | IANA timezone identifier applied to rental dates and reports |
+| `rental_policies.max_rental_duration_days` | number | Maximum allowed duration for a single rental, in days |
+| `rental_policies.require_deposit` | boolean | Whether a deposit is required before a rental is confirmed |
+| `rental_policies.late_fee_per_day` | number | Fee charged per day when a rental is overdue |
+| `invoice_prefix` | string | String prepended to auto-generated invoice numbers |
+| `date_format` | string | Default date display format across the workspace |
+| `language` | string | BCP 47 language tag for the user interface (e.g. `en`, `fr`) |
+| `notification_preferences.email` | boolean | Enable email notifications for this user |
+| `notification_preferences.sms` | boolean | Enable SMS notifications for this user |
+| `notification_preferences.in_app` | boolean | Enable in-app notifications for this user |
+| `timezone_override` | string \| null | Per-user timezone override; `null` falls back to the workspace timezone |
+
+<Note>
+Some configuration changes — such as `currency` and `timezone` — take effect immediately for all new operations. Others, like `rental_policies`, apply only to rentals created after the change. Existing rentals retain the policies that were active at the time of creation.
+</Note>

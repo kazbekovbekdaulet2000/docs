@@ -1,0 +1,141 @@
+---
+title: "Processing payments"
+description: "How to record payments and manage billing for your rentals."
+---
+
+This guide explains how to retrieve invoices, record payments, create manual transactions, and issue refunds.
+
+<Note>
+  Transactions are immutable once completed. You cannot modify or delete a recorded payment or refund — issue a correcting transaction instead.
+</Note>
+
+<Steps>
+  <Step title="Retrieve the invoice">
+    After a rental is completed, an invoice is generated automatically. Retrieve it using the `rental_id` query parameter on `GET /billing`.
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl --request GET \
+      --url 'https://api.yume.cloud/billing?rental_id=rent_4f8a1c2d' \
+      --header 'Authorization: Bearer <your-access-token>'
+    ```
+
+    ```json Response
+    {
+      "id": "inv_9c3d7e1f",
+      "rental_id": "rent_4f8a1c2d",
+      "status": "sent",
+      "amount": 500.00,
+      "currency": "USD",
+      "due_date": "2026-04-27",
+      "created_at": "2026-04-20T11:00:00Z"
+    }
+    ```
+
+    </CodeGroup>
+
+    Save the invoice `id` — you'll need it to record a payment against it.
+  </Step>
+
+  <Step title="Record a payment">
+    Submit a payment against the invoice using `POST /billing/payments`. Specify the invoice ID, amount, currency, and payment method.
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl --request POST \
+      --url https://api.yume.cloud/billing/payments \
+      --header 'Authorization: Bearer <your-access-token>' \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "invoice_id": "inv_9c3d7e1f",
+        "amount": 500.00,
+        "currency": "USD",
+        "method": "card"
+      }'
+    ```
+
+    ```json Response
+    {
+      "id": "pay_2a5f8b0c",
+      "invoice_id": "inv_9c3d7e1f",
+      "amount": 500.00,
+      "currency": "USD",
+      "method": "card",
+      "status": "completed",
+      "created_at": "2026-04-21T09:15:00Z"
+    }
+    ```
+
+    </CodeGroup>
+
+    Once the full invoice amount is paid, the invoice status updates to `paid`.
+  </Step>
+
+  <Step title="Create a transaction manually">
+    Use `POST /transactions` to record a payment transaction directly against a rental, without going through the billing invoice flow.
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl --request POST \
+      --url https://api.yume.cloud/transactions \
+      --header 'Authorization: Bearer <your-access-token>' \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "type": "payment",
+        "amount": 500,
+        "currency": "USD",
+        "rental_id": "rent_4f8a1c2d"
+      }'
+    ```
+
+    ```json Response
+    {
+      "id": "txn_b7e2c4d1",
+      "type": "payment",
+      "amount": 500.00,
+      "currency": "USD",
+      "rental_id": "rent_4f8a1c2d",
+      "status": "completed",
+      "created_at": "2026-04-21T09:20:00Z"
+    }
+    ```
+
+    </CodeGroup>
+  </Step>
+
+  <Step title="Issue a refund">
+    To refund a customer, create a transaction of type `refund`. Include the rental ID and an optional `reason`.
+
+    <CodeGroup>
+
+    ```bash cURL
+    curl --request POST \
+      --url https://api.yume.cloud/transactions \
+      --header 'Authorization: Bearer <your-access-token>' \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "type": "refund",
+        "amount": 100,
+        "rental_id": "rent_4f8a1c2d",
+        "reason": "Early return"
+      }'
+    ```
+
+    ```json Response
+    {
+      "id": "txn_e1f3a9b2",
+      "type": "refund",
+      "amount": 100.00,
+      "rental_id": "rent_4f8a1c2d",
+      "reason": "Early return",
+      "status": "completed",
+      "created_at": "2026-04-21T10:00:00Z"
+    }
+    ```
+
+    </CodeGroup>
+  </Step>
+</Steps>

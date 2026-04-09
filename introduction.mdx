@@ -1,0 +1,61 @@
+---
+title: "Introduction"
+description: "An overview of Yume Cloud and what you can build with the API."
+---
+
+Yume Cloud is a cloud-based rental and sales management platform. Its REST API gives you programmatic control over every part of your operation — from creating rentals and processing payments to tracking assets in real time and generating documents automatically.
+
+## What is Yume Cloud
+
+Yume Cloud centralizes the workflows that rental and sales businesses depend on. Instead of managing disconnected systems, you use a single API to handle the full lifecycle of your operations:
+
+- **Rentals** — create, update, and close rental records across your fleet or inventory
+- **Sales** — manage orders, sales records, and product catalogs
+- **Transactions and billing** — record payments, issue invoices, and configure billing cycles
+- **GPS tracking** — monitor the real-time location of vehicles and equipment
+- **Analytics** — pull usage reports and revenue summaries on demand
+- **Documents** — generate contracts, invoices, and receipts tied to any record
+- **Notifications** — send alerts and messages to customers and staff
+- **Integrations** — connect third-party services to your Yume Cloud account
+- **Access rights** — configure user roles and permissions across your organization
+- **Workshop and inventory** — track maintenance, repairs, and stock levels
+- **Store** — manage your product catalog and storefront inventory
+
+## Who it's for
+
+Yume Cloud is built for businesses that need programmatic control over their rental or sales operations:
+
+- **Rental companies** managing vehicles, equipment, or property
+- **Sales operations** that need inventory, order, and transaction management in one place
+- **Development teams** building custom frontends, mobile apps, or internal tools on top of a managed backend
+- **Operations teams** automating workflows across GPS tracking, billing, and customer notifications
+
+## API overview
+
+The Yume Cloud API is a REST API. All requests and responses use JSON. Authentication uses Bearer tokens obtained from `POST /auth/login`.
+
+| Property | Value |
+|---|---|
+| Protocol | REST over HTTPS |
+| Data format | JSON |
+| Authentication | Bearer token |
+| Base URL | `https://api.yume.cloud` |
+
+Every request must include an `Authorization: Bearer <token>` header. See [Authentication](/authentication) for details on obtaining and refreshing tokens.
+
+## Explore the docs
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="lock" href="/authentication">
+    Learn how to obtain a Bearer token and authenticate every API request.
+  </Card>
+  <Card title="Quick start" icon="rocket" href="/quickstart">
+    Make your first API call in under five minutes.
+  </Card>
+  <Card title="API reference" icon="code" href="/api-reference/overview">
+    Browse every endpoint available in the Yume Cloud API.
+  </Card>
+  <Card title="Guides" icon="book-open" href="/guides/managing-rentals">
+    Step-by-step guides for common tasks like managing rentals and processing payments.
+  </Card>
+</CardGroup>

@@ -1,0 +1,115 @@
+{
+  "projectType": "api-service",
+  "projectName": "Yume Cloud",
+  "projectDescription": "Yume Cloud is a cloud-based rental and sales management platform with a REST API for managing rentals, transactions, billing, GPS tracking, and integrations.",
+  "theme": "luma",
+  "primaryColor": "#6C3CE1",
+  "lightColor": "#EDE8FB",
+  "darkColor": "#3B1FA8",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "authentication",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "concepts/rentals",
+              "concepts/transactions",
+              "concepts/billing"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/managing-rentals",
+              "guides/processing-payments",
+              "guides/gps-tracking",
+              "guides/integrations"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "configuration/settings",
+              "configuration/access-rights",
+              "configuration/notifications"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api-reference/overview",
+              "api-reference/authentication"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "api-reference/rentals",
+              "api-reference/sales",
+              "api-reference/transactions",
+              "api-reference/analytics",
+              "api-reference/billing",
+              "api-reference/documents",
+              "api-reference/attachments",
+              "api-reference/gps",
+              "api-reference/notifications",
+              "api-reference/workshop",
+              "api-reference/store",
+              "api-reference/integrations",
+              "api-reference/access-rights"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Rental management with full lifecycle tracking",
+    "Sales and point-of-sale operations",
+    "Transaction and billing management",
+    "GPS and location tracking",
+    "Analytics and reporting",
+    "Workshop and inventory management",
+    "Document generation and management",
+    "Integration with third-party services",
+    "Role-based access control",
+    "Notifications and alerts"
+  ],
+  "publicApiSurface": [
+    "POST /auth/login",
+    "GET /rentals",
+    "POST /rentals",
+    "GET /rentals/{id}",
+    "PUT /rentals/{id}",
+    "GET /transactions",
+    "POST /transactions",
+    "GET /analytics",
+    "GET /billing",
+    "POST /billing/payments",
+    "GET /gps/locations",
+    "GET /notifications",
+    "POST /integrations",
+    "GET /documents",
+    "POST /attachments",
+    "GET /sales",
+    "POST /sales",
+    "GET /access-rights",
+    "GET /workshop",
+    "GET /store"
+  ]
+}
