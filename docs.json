@@ -62,6 +62,7 @@
     "languages": [
       {
         "language": "ru",
+        "default": true,
         "tabs": [
           {
             "tab": "Документация",
