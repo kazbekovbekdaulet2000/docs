@@ -53,72 +53,77 @@
         }
       ]
     },
-    "tabs": [
+    "languages": [
       {
-        "tab": "Документация",
-        "groups": [
+        "language": "ru",
+        "tabs": [
           {
-            "group": "Начало работы",
-            "pages": [
-              "index",
-              "introduction",
-              "authentication",
-              "quickstart"
+            "tab": "Документация",
+            "groups": [
+              {
+                "group": "Начало работы",
+                "pages": [
+                  "ru/index",
+                  "ru/introduction",
+                  "ru/authentication",
+                  "ru/quickstart"
+                ]
+              },
+              {
+                "group": "Основные понятия",
+                "pages": [
+                  "ru/concepts/rentals",
+                  "ru/concepts/transactions",
+                  "ru/concepts/billing"
+                ]
+              },
+              {
+                "group": "Руководства",
+                "pages": [
+                  "ru/guides/managing-rentals",
+                  "ru/guides/processing-payments",
+                  "ru/guides/gps-tracking",
+                  "ru/guides/integrations"
+                ]
+              },
+              {
+                "group": "Настройка",
+                "pages": [
+                  "ru/configuration/settings",
+                  "ru/configuration/access-rights",
+                  "ru/configuration/notifications"
+                ]
+              }
             ]
           },
           {
-            "group": "Основные понятия",
-            "pages": [
-              "concepts/rentals",
-              "concepts/transactions",
-              "concepts/billing"
-            ]
-          },
-          {
-            "group": "Руководства",
-            "pages": [
-              "guides/managing-rentals",
-              "guides/processing-payments",
-              "guides/gps-tracking",
-              "guides/integrations"
-            ]
-          },
-          {
-            "group": "Настройка",
-            "pages": [
-              "configuration/settings",
-              "configuration/access-rights",
-              "configuration/notifications"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Справочник API",
-        "groups": [
-          {
-            "group": "Обзор",
-            "pages": [
-              "api-reference/overview",
-              "api-reference/authentication"
-            ]
-          },
-          {
-            "group": "Ресурсы",
-            "pages": [
-              "api-reference/rentals",
-              "api-reference/sales",
-              "api-reference/transactions",
-              "api-reference/analytics",
-              "api-reference/billing",
-              "api-reference/documents",
-              "api-reference/attachments",
-              "api-reference/gps",
-              "api-reference/notifications",
-              "api-reference/workshop",
-              "api-reference/store",
-              "api-reference/integrations",
-              "api-reference/access-rights"
+            "tab": "Справочник API",
+            "groups": [
+              {
+                "group": "Обзор",
+                "pages": [
+                  "ru/api-reference/overview",
+                  "ru/api-reference/authentication"
+                ]
+              },
+              {
+                "group": "Ресурсы",
+                "pages": [
+                  "ru/api-reference/rentals",
+                  "ru/api-reference/sales",
+                  "ru/api-reference/transactions",
+                  "ru/api-reference/analytics",
+                  "ru/api-reference/billing",
+                  "ru/api-reference/documents",
+                  "ru/api-reference/attachments",
+                  "ru/api-reference/gps",
+                  "ru/api-reference/notifications",
+                  "ru/api-reference/workshop",
+                  "ru/api-reference/store",
+                  "ru/api-reference/integrations",
+                  "ru/api-reference/access-rights"
+                ]
+              }
             ]
           }
         ]
