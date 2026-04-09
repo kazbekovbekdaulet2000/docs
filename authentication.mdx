@@ -1,77 +1,75 @@
 ---
-title: "Authentication"
-description: "How to authenticate your requests to the Yume Cloud API."
+title: "Аутентификация"
+description: "Как аутентифицировать запросы к API Yume Cloud."
 ---
 
-The Yume Cloud API uses Bearer tokens for authentication. You obtain a token by sending your credentials to `POST /auth/login`, then include it in the `Authorization` header on every request.
+API использует **JWT** (SimpleJWT). Вы отправляете логин и пароль на `POST /v1/auth/login/` и получаете **`access`** и **`refresh`**. Во всех защищённых запросах передаётся заголовок **`Authorization: Bearer &lt;access&gt;`**.
 
 <Note>
-  All API requests require a valid Bearer token. Requests without a token, or with an expired or malformed token, will return `401 Unauthorized`.
+  Без валидного access-токена защищённые методы возвращают `401 Unauthorized`.
 </Note>
 
-## Obtaining a token
-
-Send your username and password as a JSON body to `POST /auth/login`:
+## Получение токенов
 
 ```bash
-curl -X POST https://api.yume.cloud/auth/login \
+curl -X POST https://api.yume.cloud/v1/auth/login/ \
   -H "Content-Type: application/json" \
-  -d '{"username": "your@email.com", "password": "your_password"}'
+  -d '{"username": "you@example.com", "password": "your_password"}'
 ```
 
-A successful response returns the access token and its expiry time:
+Успешный ответ содержит пару JWT (поля в стиле SimpleJWT):
 
 ```json
 {
-  "token": "eyJhbGci...",
-  "expires_at": "2026-04-09T12:00:00Z"
+  "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
 
-Store the `token` value — you will pass it in every subsequent request.
+Сохраните **`access`** для вызовов API и **`refresh`** для обновления сессии.
 
-## Using the token
-
-Include the token in the `Authorization` header using the `Bearer` scheme:
+## Использование access-токена
 
 ```bash
-curl https://api.yume.cloud/rentals \
-  -H "Authorization: Bearer eyJhbGci..."
+curl https://api.yume.cloud/v1/crm/clients/?page=1&pageSize=20 \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIs..."
 ```
 
-The header must follow this exact format:
+Формат заголовка:
 
 ```
-Authorization: Bearer <your-token>
+Authorization: Bearer <access>
 ```
 
 <Warning>
-  Never expose your token in client-side code, public repositories, or URLs. Anyone with access to your token can make API requests on your behalf. Store tokens in environment variables or a secrets manager.
+  Не публикуйте токены в клиентском коде, репозиториях и URL. Храните их в переменных окружения или в менеджере секретов.
 </Warning>
 
-## Token expiry and renewal
+## Обновление access
 
-Tokens expire at the time indicated in `expires_at`. When a token expires, re-authenticate by calling `POST /auth/login` again with your credentials:
+Когда `access` истёк, отправьте **`refresh`** на `POST /v1/auth/refresh/`:
 
 ```bash
-curl -X POST https://api.yume.cloud/auth/login \
+curl -X POST https://api.yume.cloud/v1/auth/refresh/ \
   -H "Content-Type: application/json" \
-  -d '{"username": "your@email.com", "password": "your_password"}'
+  -d '{"refresh": "<your_refresh_token>"}'
 ```
 
-<Tip>
-  If you receive a `401` on a previously working request, your token has likely expired. Implement automatic re-authentication in your client to avoid interrupting your workflows.
-</Tip>
+Ответ снова содержит актуальные токены (см. схему `TokenRefresh` в OpenAPI).
 
-## Authentication errors
+## Выход
 
-| Status code | Meaning | What to do |
-|---|---|---|
-| `401 Unauthorized` | The token is missing, malformed, or expired. | Re-authenticate using `POST /auth/login` to get a new token. |
-| `403 Forbidden` | The token is valid but your account lacks permission for the requested resource. | Check your account's access rights or contact your administrator. |
+`POST /v1/auth/logout/` с телом, содержащим `refresh`, добавляет refresh в чёрный список (при включённом `token_blacklist` на стороне сервера).
 
-## Security best practices
+## Типичные ошибки
 
-- Always use the `Authorization` header — never pass tokens as URL query parameters.
-- Use environment variables or a secrets manager to store tokens, not source code.
-- Rotate credentials immediately if you suspect they have been compromised.
+| Код | Смысл | Что сделать |
+|-----|--------|-------------|
+| `401` | Нет токена, неверный или истёкший access | Повторить вход или вызвать `/v1/auth/refresh/` |
+| `403` | Токен есть, но недостаточно прав | Проверить роли и доступы в аккаунте |
+
+## Рекомендации по безопасности
+
+- Передавайте токен только в заголовке `Authorization`, не в query-параметрах.
+- Храните учётные данные и токены вне исходного кода.
+- При компрометации смените пароль и завершите сессии через API или интерфейс продукта.

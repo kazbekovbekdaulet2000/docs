@@ -1,61 +1,61 @@
 ---
-title: "Welcome to Yume Cloud"
-description: "The all-in-one API platform for rental and sales management — from GPS tracking to billing."
+title: "Добро пожаловать в Yume Cloud"
+description: "Единая платформа API для аренды и продаж — от GPS до биллинга."
 ---
 
-Yume Cloud gives you a powerful REST API to manage your entire rental and sales operation: create rentals, process transactions, track assets via GPS, generate documents, and integrate with your existing tools — all from a single platform.
+Yume Cloud предоставляет REST API для управления арендой и продажами: оформление проката, транзакции, трекинг активов по GPS, документы и интеграции — из одной точки.
 
 <CardGroup cols={2}>
-  <Card title="Quick Start" icon="rocket" href="/quickstart">
-    Make your first API call in minutes
+  <Card title="Быстрый старт" icon="rocket" href="/quickstart">
+    Первый запрос к API за несколько минут
   </Card>
-  <Card title="Authentication" icon="lock" href="/authentication">
-    Learn how to authenticate your requests
+  <Card title="Аутентификация" icon="lock" href="/authentication">
+    Как передавать токен в запросах
   </Card>
-  <Card title="API Reference" icon="code" href="/api-reference/overview">
-    Explore all available endpoints
+  <Card title="Справочник API" icon="code" href="/api-reference/overview">
+    Эндпоинты и OpenAPI
   </Card>
-  <Card title="Guides" icon="book-open" href="/guides/managing-rentals">
-    Step-by-step walkthroughs for common tasks
+  <Card title="Руководства" icon="book-open" href="/guides/managing-rentals">
+    Пошаговые сценарии
   </Card>
 </CardGroup>
 
-## How it works
+## Как это устроено
 
 <Steps>
-  <Step title="Get your API token">
-    Log in and retrieve your API key from your account settings, or call `POST /auth/login` to obtain a Bearer token.
+  <Step title="Получите JWT">
+    Вызовите `POST /v1/auth/login/` с логином и паролем и сохраните `access` (и при необходимости `refresh`).
   </Step>
-  <Step title="Make your first request">
-    Pass your token in the `Authorization` header and call any endpoint in the Yume Cloud API.
+  <Step title="Добавьте заголовок Authorization">
+    Передавайте заголовок `Authorization: Bearer` и ваш access-токен во всех защищённых запросах.
   </Step>
-  <Step title="Manage rentals and sales">
-    Create rentals, process payments, track GPS locations, and generate documents — all through the same API.
+  <Step title="Работайте с CRM и биллингом">
+    Клиенты, инвентарь, группы, сделки и счета доступны под префиксом `/v1/` — см. полную спецификацию OpenAPI.
   </Step>
-  <Step title="Integrate your tools">
-    Connect Yume Cloud to your existing software using the Integrations API.
+  <Step title="Подключайте интеграции">
+    Телефония, мессенджеры, Wialon и другие сервисы — раздел `/v1/crm/integrations/...`.
   </Step>
 </Steps>
 
-## Explore by area
+## Разделы
 
 <CardGroup cols={3}>
-  <Card title="Rentals" icon="key" href="/concepts/rentals">
-    Full rental lifecycle management
+  <Card title="Аренда" icon="key" href="/concepts/rentals">
+    Жизненный цикл проката
   </Card>
-  <Card title="Transactions" icon="credit-card" href="/concepts/transactions">
-    Payments and financial records
+  <Card title="Транзакции" icon="credit-card" href="/concepts/transactions">
+    Платежи и записи
   </Card>
-  <Card title="Billing" icon="receipt" href="/concepts/billing">
-    Invoices and billing cycles
+  <Card title="Биллинг" icon="receipt" href="/concepts/billing">
+    Счета и оплата
   </Card>
-  <Card title="GPS Tracking" icon="location-dot" href="/guides/gps-tracking">
-    Real-time asset location
+  <Card title="GPS" icon="location-dot" href="/guides/gps-tracking">
+    Местоположение активов
   </Card>
-  <Card title="Analytics" icon="chart-bar" href="/api-reference/analytics">
-    Reports and usage insights
+  <Card title="Аналитика" icon="chart-bar" href="/api-reference/analytics">
+    Отчёты и метрики
   </Card>
-  <Card title="Integrations" icon="plug" href="/guides/integrations">
-    Connect third-party services
+  <Card title="Интеграции" icon="plug" href="/guides/integrations">
+    Внешние сервисы
   </Card>
 </CardGroup>

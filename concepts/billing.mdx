@@ -1,101 +1,64 @@
 ---
-title: "Billing"
-description: "How billing and invoicing work in Yume Cloud."
+title: "Биллинг"
+description: "Счета и оплата в Yume Cloud."
 ---
 
-Billing in Yume Cloud is the process of generating invoices and collecting payments for rentals and services. When a rental is created or completed, Yume Cloud can automatically produce an itemized invoice that tracks what the client owes, the due date, and the current payment status.
+Биллинг — это выставление счетов и учёт оплат по аренде и услугам. В API Yume Cloud счета и карты описаны в разделе **`/v1/billing/...`** (см. OpenAPI).
 
-Invoices are settled through [Transactions](/concepts/transactions), which record each payment or adjustment applied against the outstanding balance.
+Связь с деньгами идёт через [транзакции](/concepts/transactions): каждая оплата фиксируется отдельной записью.
 
-## Billing cycle
+## Цикл
 
-Invoices are generated at two points:
-
-- **On rental completion** — a final invoice is automatically produced when a rental transitions to `completed` status, capturing all charges for the full rental period.
-- **On a recurring schedule** — for long-running rentals, invoices can be generated at regular intervals (e.g., weekly or monthly) to enable periodic billing.
+- Итоговый счёт может формироваться при завершении аренды.
+- Для длительных договоров возможен периодический выставление счетов (по настройкам тенанта).
 
 <Tip>
-  Yume Cloud automatically generates a final invoice when a rental is marked as `completed`. You do not need to create the invoice manually — just ensure the rental's pricing and client details are correct before closing the rental.
+  Перед закрытием аренды проверьте тариф и реквизиты — итоговый счёт строится на их основе.
 </Tip>
 
-## Key billing entities
+## Сущности
 
-### Invoice
+### Счёт (invoice)
 
-An itemized bill for a rental period. An invoice records the total amount owed, the due date, and the payment status.
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `id` | string | Идентификатор |
+| `rental_id` | string | Связанная аренда |
+| `client_id` | string | Плательщик |
+| `amount` | number | Сумма к оплате |
+| `status` | string | `draft`, `sent`, `paid`, `overdue` и др. |
+| `due_date` | string | Срок оплаты |
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | string | Unique identifier for the invoice. |
-| `rental_id` | string | The rental this invoice is associated with. |
-| `client_id` | string | The client this invoice is billed to. |
-| `amount` | number | Total amount due on this invoice. |
-| `status` | string | Current state: `draft`, `sent`, `paid`, or `overdue`. |
-| `due_date` | string (ISO 8601) | The date by which payment must be received. |
+#### Статусы счёта
 
-#### Invoice statuses
+| Статус | Описание |
+|--------|----------|
+| `draft` | Черновик, можно менять |
+| `sent` | Отправлен клиенту |
+| `paid` | Оплачен полностью |
+| `overdue` | Просрочен |
 
-| Status | Description |
-|--------|-------------|
-| `draft` | The invoice has been created but is not yet finalized. Line items and amounts may still change. |
-| `sent` | The invoice has been finalized and delivered to the client for payment. |
-| `paid` | The full amount has been collected. The invoice is closed. |
-| `overdue` | The `due_date` has passed and the invoice has not been fully paid. |
+### Оплата
 
-### Payment
+Каждая оплата — это [транзакция](/concepts/transactions) типа `payment`, уменьшающая баланс счёта.
 
-The settlement of an invoice. Each payment is recorded as a [Transaction](/concepts/transactions) of type `payment`, linked to the rental via `rental_id`. The invoice balance decreases as payment transactions are completed.
+### Баланс
 
-### Balance
+Остаток к оплате = сумма счёта минус сумма завершённых платежей по нему.
 
-The outstanding amount owed on an invoice, calculated as the difference between `amount` and the sum of all completed `payment` transactions linked to that invoice. When the balance reaches zero, the invoice moves to `paid`.
+## Запросы к API
 
-## Retrieve billing history
+Используйте пути из спецификации, например:
 
-Use `GET /billing` to retrieve a paginated list of invoices. Filter by rental, status, or date range.
+- списки и детали счетов: `/v1/billing/invoices/`
+- расчёты и проверки — см. операции `calculate`, `check`, `result` в OpenAPI
+
+Пример (путь уточняйте по спецификации):
 
 ```bash
 curl --request GET \
-  --url 'https://api.yume.cloud/billing' \
-  --header 'Authorization: Bearer <token>'
+  'https://api.yume.cloud/v1/billing/invoices/?page=1&pageSize=20' \
+  --header 'Authorization: Bearer <access>'
 ```
 
-**Common query parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `rental_id` | string | Return invoices for a specific rental. |
-| `client_id` | string | Return invoices for a specific client. |
-| `status` | string | Filter by invoice state: `draft`, `sent`, `paid`, or `overdue`. |
-| `from` | string (ISO 8601) | Return invoices created on or after this date. |
-| `to` | string (ISO 8601) | Return invoices created on or before this date. |
-
-## Record a payment
-
-Use `POST /billing/payments` to record a payment against an invoice. This creates a transaction of type `payment` and updates the invoice balance.
-
-```bash
-curl --request POST \
-  --url https://api.yume.cloud/billing/payments \
-  --header 'Authorization: Bearer <token>' \
-  --header 'Content-Type: application/json' \
-  --data '{
-    "invoice_id": "inv_07PQRS3456MNOP",
-    "amount": 420.00,
-    "currency": "USD",
-    "method": "card"
-  }'
-```
-
-**Example request body:**
-
-```json
-{
-  "invoice_id": "inv_07PQRS3456MNOP",
-  "amount": 420.00,
-  "currency": "USD",
-  "method": "card"
-}
-```
-
-On success, the API returns the created transaction object and the updated invoice balance.
+Параметры фильтрации и тело запросов для ручных операций смотрите в актуальном OpenAPI.

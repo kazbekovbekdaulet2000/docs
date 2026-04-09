@@ -1,63 +1,63 @@
 ---
-title: "Rentals"
-description: "Understand how rentals work in Yume Cloud."
+title: "Аренда"
+description: "Как устроена аренда в Yume Cloud."
 ---
 
-A rental in Yume Cloud is a time-bound agreement that grants a client the right to use an asset — such as equipment, a vehicle, or a property — for a defined period. Each rental ties together the asset, the customer, the rental window, and the total cost into a single trackable record.
+Аренда в Yume Cloud — это договорённость на период, связывающая клиента, объект (инвентарь / технику) и условия выдачи и возврата. В API детали сделок и инвентаря отражены в ресурсах CRM (`/v1/crm/...`) — используйте OpenAPI для точных путей и полей.
 
-## Rental lifecycle
+## Жизненный цикл
 
-Rentals move through a defined set of states from creation to closure.
+Типичные состояния проката (концептуально):
 
 ```
-Created → Active → Completed
-                 ↘ Cancelled
+Создано → Активно → Завершено
+                 ↘ Отменено
 ```
 
-### Status transitions
+### Переходы статусов
 
-| From | To | Trigger |
-|------|----|---------|
-| `created` | `active` | Asset handed over to client |
-| `active` | `completed` | Asset returned at or after `end_date` |
-| `active` | `cancelled` | Early termination requested |
-| `created` | `cancelled` | Rental voided before activation |
+| Из | В | Когда |
+|----|---|--------|
+| `created` | `active` | Объект передан клиенту |
+| `active` | `completed` | Возврат по `end_date` или факту |
+| `active` | `cancelled` | Досрочное расторжение |
+| `created` | `cancelled` | Отмена до выдачи |
 
-| Status | Description |
-|--------|-------------|
-| `created` | The rental has been recorded but the asset has not yet been handed over. |
-| `active` | The asset is in use by the client within the agreed rental period. |
-| `completed` | The rental period has ended and the asset has been returned. |
-| `cancelled` | The rental was terminated before or during the active period. |
+| Статус | Смысл |
+|--------|--------|
+| `created` | Запись есть, выдачи ещё не было |
+| `active` | Объект у клиента в срок аренды |
+| `completed` | Период закрыт, возврат оформлен |
+| `cancelled` | Аренда отменена |
 
 <Note>
-  When a rental reaches `completed` status, Yume Cloud automatically triggers the generation of a final invoice as a Document. Ensure the client's billing details are up to date before completing a rental.
+  При переводе в `completed` обычно формируется итоговый документ/счёт. Убедитесь, что реквизиты клиента и тариф актуальны.
 </Note>
 
-## Key fields
+## Ключевые поля (концептуально)
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | string | Unique identifier for the rental. |
-| `status` | string | Current state: `created`, `active`, `completed`, or `cancelled`. |
-| `asset_id` | string | The identifier of the asset being rented. |
-| `client_id` | string | The identifier of the customer associated with the rental. |
-| `start_date` | string (ISO 8601) | The date and time the rental period begins. |
-| `end_date` | string (ISO 8601) | The date and time the rental period ends. |
-| `total_amount` | number | The calculated total cost for the rental period. |
-| `created_at` | string (ISO 8601) | Timestamp of when the rental record was created. |
-| `updated_at` | string (ISO 8601) | Timestamp of the most recent update to the rental record. |
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `id` | string | Идентификатор записи |
+| `status` | string | Текущее состояние |
+| `asset_id` | string | Объект аренды |
+| `client_id` | string | Клиент |
+| `start_date` | string (ISO 8601) | Начало периода |
+| `end_date` | string (ISO 8601) | Конец периода |
+| `total_amount` | number | Итоговая стоимость |
+| `created_at` | string | Создание записи |
+| `updated_at` | string | Последнее изменение |
 
-## Relationships
+## Связи
 
-### Transactions
+### Транзакции
 
-Payments collected against a rental are recorded as [Transactions](/concepts/transactions). Each transaction references the rental via `rental_id`, allowing you to track payments, deposits, and refunds tied to a specific rental.
+Платежи по аренде отражаются как [транзакции](/concepts/transactions) с привязкой к сделке.
 
-### Documents
+### Документы
 
-Invoices and contracts are generated and stored as Documents. When a rental transitions to `completed`, a final invoice Document is created automatically. You can also generate draft invoices or contracts at any point during the rental lifecycle.
+Договоры и счета создаются как документы; при закрытии аренды может автоматически формироваться итоговый счёт.
 
 ### GPS
 
-If the rented asset is GPS-enabled, its real-time location and movement history are accessible through the GPS endpoints. Use this to monitor asset usage, verify return locations, and detect unauthorized movement during an active rental.
+Если на объекте включён трекинг, координаты доступны через GPS и интеграции геолокации в спецификации API.

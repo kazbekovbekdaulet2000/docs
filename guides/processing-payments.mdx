@@ -1,141 +1,38 @@
 ---
-title: "Processing payments"
-description: "How to record payments and manage billing for your rentals."
+title: "Обработка платежей"
+description: "Счета, оплаты и транзакции."
 ---
 
-This guide explains how to retrieve invoices, record payments, create manual transactions, and issue refunds.
+Раздел **`/v1/billing/`** в OpenAPI описывает счета, карты и связанные операции. Транзакции учёта — в соответствующих CRM/платёжных ресурсах вашей конфигурации.
 
 <Note>
-  Transactions are immutable once completed. You cannot modify or delete a recorded payment or refund — issue a correcting transaction instead.
+  Проведённые платежи не изменяют задним числом — для корректировок создаются новые записи (возврат, корректировка).
 </Note>
 
 <Steps>
-  <Step title="Retrieve the invoice">
-    After a rental is completed, an invoice is generated automatically. Retrieve it using the `rental_id` query parameter on `GET /billing`.
+  <Step title="Найдите счёт">
+    Получите список или детали счёта, например:
 
-    <CodeGroup>
-
-    ```bash cURL
+    ```bash
     curl --request GET \
-      --url 'https://api.yume.cloud/billing?rental_id=rent_4f8a1c2d' \
-      --header 'Authorization: Bearer <your-access-token>'
+      'https://api.yume.cloud/v1/billing/invoices/?page=1&pageSize=20' \
+      --header 'Authorization: Bearer <access>'
     ```
 
-    ```json Response
-    {
-      "id": "inv_9c3d7e1f",
-      "rental_id": "rent_4f8a1c2d",
-      "status": "sent",
-      "amount": 500.00,
-      "currency": "USD",
-      "due_date": "2026-04-27",
-      "created_at": "2026-04-20T11:00:00Z"
-    }
-    ```
-
-    </CodeGroup>
-
-    Save the invoice `id` — you'll need it to record a payment against it.
+    Уточните фильтры в спецификации (`/v1/billing/invoices/`).
   </Step>
 
-  <Step title="Record a payment">
-    Submit a payment against the invoice using `POST /billing/payments`. Specify the invoice ID, amount, currency, and payment method.
-
-    <CodeGroup>
-
-    ```bash cURL
-    curl --request POST \
-      --url https://api.yume.cloud/billing/payments \
-      --header 'Authorization: Bearer <your-access-token>' \
-      --header 'Content-Type: application/json' \
-      --data '{
-        "invoice_id": "inv_9c3d7e1f",
-        "amount": 500.00,
-        "currency": "USD",
-        "method": "card"
-      }'
-    ```
-
-    ```json Response
-    {
-      "id": "pay_2a5f8b0c",
-      "invoice_id": "inv_9c3d7e1f",
-      "amount": 500.00,
-      "currency": "USD",
-      "method": "card",
-      "status": "completed",
-      "created_at": "2026-04-21T09:15:00Z"
-    }
-    ```
-
-    </CodeGroup>
-
-    Once the full invoice amount is paid, the invoice status updates to `paid`.
+  <Step title="Зафиксируйте оплату">
+    Используйте предусмотренный бэкендом метод оплаты по счёту или платёжный шлюз — тела запросов и пути смотрите в OpenAPI (в т.ч. ручные операции `.../manual/` при наличии).
   </Step>
 
-  <Step title="Create a transaction manually">
-    Use `POST /transactions` to record a payment transaction directly against a rental, without going through the billing invoice flow.
-
-    <CodeGroup>
-
-    ```bash cURL
-    curl --request POST \
-      --url https://api.yume.cloud/transactions \
-      --header 'Authorization: Bearer <your-access-token>' \
-      --header 'Content-Type: application/json' \
-      --data '{
-        "type": "payment",
-        "amount": 500,
-        "currency": "USD",
-        "rental_id": "rent_4f8a1c2d"
-      }'
-    ```
-
-    ```json Response
-    {
-      "id": "txn_b7e2c4d1",
-      "type": "payment",
-      "amount": 500.00,
-      "currency": "USD",
-      "rental_id": "rent_4f8a1c2d",
-      "status": "completed",
-      "created_at": "2026-04-21T09:20:00Z"
-    }
-    ```
-
-    </CodeGroup>
+  <Step title="Ручная транзакция (если доступна)">
+    При необходимости создайте финансовую запись через соответствующий `POST` в разделе транзакций/платежей вашей схемы API, передав сумму, валюту и связь со сделкой или счётом.
   </Step>
 
-  <Step title="Issue a refund">
-    To refund a customer, create a transaction of type `refund`. Include the rental ID and an optional `reason`.
-
-    <CodeGroup>
-
-    ```bash cURL
-    curl --request POST \
-      --url https://api.yume.cloud/transactions \
-      --header 'Authorization: Bearer <your-access-token>' \
-      --header 'Content-Type: application/json' \
-      --data '{
-        "type": "refund",
-        "amount": 100,
-        "rental_id": "rent_4f8a1c2d",
-        "reason": "Early return"
-      }'
-    ```
-
-    ```json Response
-    {
-      "id": "txn_e1f3a9b2",
-      "type": "refund",
-      "amount": 100.00,
-      "rental_id": "rent_4f8a1c2d",
-      "reason": "Early return",
-      "status": "completed",
-      "created_at": "2026-04-21T10:00:00Z"
-    }
-    ```
-
-    </CodeGroup>
+  <Step title="Возврат">
+    Оформите возврат отдельной операцией с типом, соответствующим возврату, и ссылкой на исходную сделку или счёт.
   </Step>
 </Steps>
+
+Все пути и поля уточняйте в актуальной спецификации — названия ресурсов могут отличаться в зависимости от версии бэкенда.

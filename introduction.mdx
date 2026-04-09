@@ -1,61 +1,60 @@
 ---
-title: "Introduction"
-description: "An overview of Yume Cloud and what you can build with the API."
+title: "Введение"
+description: "Обзор Yume Cloud и возможностей API."
 ---
 
-Yume Cloud is a cloud-based rental and sales management platform. Its REST API gives you programmatic control over every part of your operation — from creating rentals and processing payments to tracking assets in real time and generating documents automatically.
+Yume Cloud — облачная платформа для управления арендой и продажами. REST API даёт программный доступ к операциям: от учёта клиентов и инвентаря до платежей, GPS и документов.
 
-## What is Yume Cloud
+## Что такое Yume Cloud
 
-Yume Cloud centralizes the workflows that rental and sales businesses depend on. Instead of managing disconnected systems, you use a single API to handle the full lifecycle of your operations:
+Платформа объединяет процессы арендного и торгового бизнеса. Через один API с префиксом **`/v1/`** вы работаете с данными CRM, биллингом и вложениями:
 
-- **Rentals** — create, update, and close rental records across your fleet or inventory
-- **Sales** — manage orders, sales records, and product catalogs
-- **Transactions and billing** — record payments, issue invoices, and configure billing cycles
-- **GPS tracking** — monitor the real-time location of vehicles and equipment
-- **Analytics** — pull usage reports and revenue summaries on demand
-- **Documents** — generate contracts, invoices, and receipts tied to any record
-- **Notifications** — send alerts and messages to customers and staff
-- **Integrations** — connect third-party services to your Yume Cloud account
-- **Access rights** — configure user roles and permissions across your organization
-- **Workshop and inventory** — track maintenance, repairs, and stock levels
-- **Store** — manage your product catalog and storefront inventory
+- **Клиенты и инвентарь** — клиенты, группы, единицы инвентаря, тарифы (см. `/v1/crm/...`)
+- **Продажи и заказы** — в зависимости от конфигурации тенанта
+- **Транзакции и биллинг** — счета, карты, расчёты (`/v1/billing/...`)
+- **GPS и телематика** — устройства и поездки через интеграции (`/v1/crm/integrations/geolocation/...`, Wialon и др.)
+- **Аналитика** — отчёты по данным аккаунта
+- **Документы** — шаблоны и генерация (`/v1/.../documents/...` в спецификации)
+- **Вложения** — файлы, изображения, multipart-загрузка (`/v1/attachments/...`)
+- **Уведомления** — каналы оповещений
+- **Интеграции** — Binotel, Ringostat, Sipuni, Wazzup, Wialon и другие
+- **Права доступа** — роли и разграничение в рамках тенанта
+- **Мастерская и склад** — заявки на сервис, состояние техники (по маршрутам в OpenAPI)
 
-## Who it's for
+## Кому подходит
 
-Yume Cloud is built for businesses that need programmatic control over their rental or sales operations:
+- Компании по прокату транспорта и оборудования
+- Команды, которым нужны свои интерфейсы и мобильные приложения поверх Yume Cloud
+- Операции, где важны автоматизация биллинга, GPS и уведомлений
 
-- **Rental companies** managing vehicles, equipment, or property
-- **Sales operations** that need inventory, order, and transaction management in one place
-- **Development teams** building custom frontends, mobile apps, or internal tools on top of a managed backend
-- **Operations teams** automating workflows across GPS tracking, billing, and customer notifications
+## Обзор API
 
-## API overview
+| Свойство | Значение |
+|----------|----------|
+| Протокол | REST по HTTPS |
+| Формат | JSON (для тел запросов с телом — как в схеме эндпоинта) |
+| Версия спецификации | **1.3.1** (см. `info.version` в OpenAPI) |
+| Префикс путей | **`/v1/`** |
+| Аутентификация | JWT: пара **access** / **refresh** после `POST /v1/auth/login/`; обновление — `POST /v1/auth/refresh/` |
+| Базовый URL | `https://api.yume.cloud` |
 
-The Yume Cloud API is a REST API. All requests and responses use JSON. Authentication uses Bearer tokens obtained from `POST /auth/login`.
+В защищённых запросах передавайте **`Authorization: Bearer &lt;access&gt;`**. Подробнее — в разделе [Аутентификация](/authentication).
 
-| Property | Value |
-|---|---|
-| Protocol | REST over HTTPS |
-| Data format | JSON |
-| Authentication | Bearer token |
-| Base URL | `https://api.yume.cloud` |
+Полный перечень путей и схем — в файле OpenAPI; для локальной разработки можно подставить полный экспорт через `scripts/sync-openapi.sh`.
 
-Every request must include an `Authorization: Bearer <token>` header. See [Authentication](/authentication) for details on obtaining and refreshing tokens.
-
-## Explore the docs
+## Куда перейти дальше
 
 <CardGroup cols={2}>
-  <Card title="Authentication" icon="lock" href="/authentication">
-    Learn how to obtain a Bearer token and authenticate every API request.
+  <Card title="Аутентификация" icon="lock" href="/authentication">
+    Логин, JWT и заголовки запросов
   </Card>
-  <Card title="Quick start" icon="rocket" href="/quickstart">
-    Make your first API call in under five minutes.
+  <Card title="Быстрый старт" icon="rocket" href="/quickstart">
+    Пример входа и запроса к API
   </Card>
-  <Card title="API reference" icon="code" href="/api-reference/overview">
-    Browse every endpoint available in the Yume Cloud API.
+  <Card title="Справочник API" icon="code" href="/api-reference/overview">
+    Базовый URL, пагинация и ошибки
   </Card>
-  <Card title="Guides" icon="book-open" href="/guides/managing-rentals">
-    Step-by-step guides for common tasks like managing rentals and processing payments.
+  <Card title="Руководства" icon="book-open" href="/guides/managing-rentals">
+    Типовые сценарии работы с API
   </Card>
 </CardGroup>

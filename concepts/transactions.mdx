@@ -1,52 +1,46 @@
 ---
-title: "Transactions"
-description: "How payments and financial records work in Yume Cloud."
+title: "Транзакции"
+description: "Платежи и финансовые записи в Yume Cloud."
 ---
 
-A transaction is a record of money moving in or out of an account in Yume Cloud. Every financial event — a customer payment, a refund, a security deposit, or a manual adjustment — is captured as an immutable transaction and linked to the relevant rental or sale.
+Транзакция — это запись о движении средств: оплата, возврат, депозит или ручная корректировка. Такие записи связывают аренду или продажу с фактическими платежами и формируют аудит для биллинга.
 
-Transactions form the audit trail that underpins billing and financial reporting.
+## Типы
 
-## Transaction types
+| Тип | Описание |
+|-----|----------|
+| `payment` | Входящий платёж по счёту |
+| `refund` | Возврат клиенту |
+| `deposit` | Залог / предоплата |
+| `adjustment` | Ручная корректировка без прямого платежа |
 
-| Type | Description |
-|------|-------------|
-| `payment` | Money received from a client, applied against an outstanding invoice balance. |
-| `refund` | Money returned to a client, typically following a cancellation or billing correction. |
-| `deposit` | A security or pre-authorization amount held at the start of a rental period. |
-| `adjustment` | A manual correction to an account balance that is not a direct payment or refund (e.g., a credit applied for a dispute). |
+## Поля
 
-## Key fields
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `id` | string | Идентификатор |
+| `type` | string | Один из типов выше |
+| `amount` | number | Сумма (положительное число) |
+| `currency` | string | Код валюты ISO 4217 |
+| `status` | string | Например `pending`, `completed`, `failed`, `reversed` |
+| `rental_id` | string \| null | Связь с арендой, если есть |
+| `created_at` | string | Время создания (ISO 8601) |
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | string | Unique identifier for the transaction. |
-| `type` | string | Transaction type: `payment`, `refund`, `deposit`, or `adjustment`. |
-| `amount` | number | The monetary value of the transaction. Always a positive number. |
-| `currency` | string | Three-letter ISO 4217 currency code (e.g., `USD`, `EUR`). |
-| `status` | string | Current state: `pending`, `completed`, `failed`, or `reversed`. |
-| `rental_id` | string \| null | Optional. The rental this transaction is linked to. `null` for transactions not associated with a rental. |
-| `created_at` | string (ISO 8601) | When the transaction was recorded. |
+## Статусы
 
-## Transaction statuses
-
-| Status | Description |
-|--------|-------------|
-| `pending` | The transaction has been initiated but is not yet settled (e.g., awaiting payment gateway confirmation). |
-| `completed` | The transaction has been successfully processed and funds have moved. |
-| `failed` | The transaction could not be completed (e.g., insufficient funds or gateway error). |
-| `reversed` | A completed transaction that has been reversed, typically as part of a refund or chargeback. |
+| Статус | Описание |
+|--------|----------|
+| `pending` | Инициировано, нет финального подтверждения |
+| `completed` | Успешно проведено |
+| `failed` | Не выполнено (ошибка шлюза и т.д.) |
+| `reversed` | Отменено после проведения |
 
 <Info>
-  Transactions are immutable once they reach `completed` status. To correct an error or issue a refund, create a new transaction of the appropriate type (e.g., `refund` or `adjustment`) rather than modifying the existing record.
+  Завершённые транзакции не переписывают — для исправлений создают новую запись (возврат, корректировку).
 </Info>
 
-## Relationship to rentals and billing
+## Связь с арендой и биллингом
 
-Transactions connect rentals to their financial records:
-
-- Each transaction optionally references a `rental_id`, linking it to the rental that generated the charge.
-- When a `payment` transaction is completed, Yume Cloud updates the balance on the associated invoice in [Billing](/concepts/billing).
-- An invoice moves to `paid` once the sum of completed `payment` transactions equals the total amount due.
-- `deposit` transactions are held and may be applied to or returned at rental completion.
-- `refund` and `adjustment` transactions are always recorded as new entries, preserving the original transaction history intact.
+- Транзакция может ссылаться на `rental_id`.
+- Оплаты уменьшают баланс счёта в [биллинге](/concepts/billing).
+- Депозиты могут удерживаться или возвращаться при закрытии аренды.

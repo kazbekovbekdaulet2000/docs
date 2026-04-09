@@ -1,33 +1,38 @@
 ---
-title: "Authentication"
-description: "API reference for the Yume Cloud authentication endpoints."
+title: "Аутентификация (API)"
+description: "Эндпоинты входа, обновления токена и профиля."
 ---
 
-The Yume Cloud API uses Bearer token authentication. You obtain a token by calling `POST /auth/login` with your account credentials. Pass the token in the `Authorization` header on all subsequent requests.
+Аутентификация строится на **JWT** (SimpleJWT). Основные маршруты:
+
+- `POST /v1/auth/login/` — выдача пары **access** / **refresh**
+- `POST /v1/auth/refresh/` — новый **access** по **refresh**
+- `POST /v1/auth/logout/` — инвалидация **refresh** (blacklist)
+- `GET` / `PUT` / `PATCH /v1/auth/profile/` — профиль пользователя
+
+В спецификации OpenAPI для схем безопасности также указаны **Basic** и **cookie** (`sessionid`); для интеграций по HTTP API обычно используется заголовок **`Authorization: Bearer`** с access-токеном.
 
 <Note>
-  All API endpoints — except `POST /auth/login` — require a valid Bearer token. Requests without a token return `401 Unauthorized`.
+  Кроме публичных эндпоинтов входа и сброса пароля, защищённые методы требуют валидного JWT.
 </Note>
 
-## POST /auth/login
+## POST /v1/auth/login/
 
-Authenticate with your Yume Cloud credentials and obtain a Bearer token.
-
-### Request body
+### Тело запроса
 
 <ParamField body="username" type="string" required>
-  Your account email address.
+  Имя пользователя или email (как в вашей учётной записи).
 </ParamField>
 
 <ParamField body="password" type="string" required>
-  Your account password.
+  Пароль.
 </ParamField>
 
-### Example request
+### Пример
 
-```bash cURL
+```bash
 curl --request POST \
-  --url https://api.yume.cloud/auth/login \
+  --url https://api.yume.cloud/v1/auth/login/ \
   --header 'Content-Type: application/json' \
   --header 'Accept: application/json' \
   --data '{
@@ -36,58 +41,27 @@ curl --request POST \
   }'
 ```
 
-### Response fields
+### Ответ
 
-<ResponseField name="token" type="string">
-  The Bearer token to use in the `Authorization` header for all subsequent requests.
-</ResponseField>
-
-<ResponseField name="expires_at" type="string">
-  ISO 8601 datetime indicating when the token expires. After this time, obtain a new token by calling `POST /auth/login` again.
-</ResponseField>
-
-<ResponseField name="user_id" type="string">
-  Your Yume Cloud account ID.
-</ResponseField>
-
-### Example response
+В ответе — JWT access и refresh (см. фактическое тело в вашей среде и схемы в OpenAPI).
 
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "expires_at": "2026-04-10T12:00:00Z",
-  "user_id": "usr_abc123"
+  "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
 
-### Error responses
+## POST /v1/auth/refresh/
 
-| Status | Error | Description |
-|--------|-------|-------------|
-| 400 | `bad_request` | Required fields are missing from the request body |
-| 401 | `invalid_credentials` | The username or password is incorrect |
+Передайте **`refresh`** в теле JSON — в ответе придёт новый `access` (и при необходимости обновлённый `refresh`).
 
-## Using the token
-
-Pass the token as a Bearer token in the `Authorization` header on every API request:
+## Использование токена
 
 ```
-Authorization: Bearer <token>
+Authorization: Bearer <access>
 ```
-
-Example:
-
-```bash cURL
-curl --request GET \
-  --url https://api.yume.cloud/rentals \
-  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' \
-  --header 'Accept: application/json'
-```
-
-## Token expiry
-
-Tokens expire at the datetime returned in the `expires_at` field. When a token expires, requests return `401 Unauthorized`. Call `POST /auth/login` again with your credentials to obtain a new token.
 
 <Warning>
-  Never share your token or include it in URLs or query parameters. Treat it like a password. Anyone with your token can make API calls on your behalf.
+  Не передавайте токены в URL и в публичных репозиториях.
 </Warning>

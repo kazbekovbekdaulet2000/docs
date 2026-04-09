@@ -1,138 +1,25 @@
 ---
-title: "Access Rights"
-description: "Manage team members and control what each role can access in Yume Cloud."
+title: "Права доступа"
+description: "Роли и ограничения в Yume Cloud."
 ---
 
-Yume Cloud uses role-based access control (RBAC) to define what each team member can see and do. Every user in your workspace is assigned one of four roles, and permissions are enforced at the API level.
+Доступ к данным регулируется на стороне сервера по ролям и разрешениям тенанта. Точные эндпоинты управления пользователями смотрите в OpenAPI (CRM, агенты, группы).
 
 <Warning>
-Only users with the **Admin** role can manage access rights. Attempts to call these endpoints with any other role will return a `403 Forbidden` response.
+  Изменение прав обычно доступно только администраторам. При недостаточных правах API вернёт **`403 Forbidden`**.
 </Warning>
 
-## Roles
+## Роли (концептуально)
 
-| Role | Description |
-|---|---|
-| **Admin** | Full access to all features, settings, and user management |
-| **Manager** | Can manage rentals, approve transactions, and view analytics; cannot manage users or settings |
-| **Operator** | Can create and manage rentals; cannot approve transactions or access analytics |
-| **Viewer** | Read-only access to rentals and analytics |
+| Роль | Возможности |
+|------|-------------|
+| **Администратор** | Полный доступ, настройки, пользователи |
+| **Менеджер** | Операции и согласования без администрирования системы |
+| **Оператор** | Повседневные операции по клиентам и выдаче |
+| **Наблюдатель** | Только чтение |
 
-## Permissions
+Фактические имена ролей и матрица могут отличаться — сверяйтесь с продуктом.
 
-| Permission | Admin | Manager | Operator | Viewer |
-|---|---|---|---|---|
-| Create rentals | ✓ | ✓ | ✓ | ✗ |
-| Approve rentals | ✓ | ✓ | ✗ | ✗ |
-| Process payments | ✓ | ✓ | ✗ | ✗ |
-| Manage users | ✓ | ✗ | ✗ | ✗ |
-| View analytics | ✓ | ✓ | ✓ | ✓ |
-| Configure settings | ✓ | ✗ | ✗ | ✗ |
+## Проверка доступа
 
-## List users and roles
-
-Retrieve all users in the workspace and their assigned roles.
-
-```bash cURL
-curl --request GET \
-  --url https://api.yume.cloud/access-rights \
-  --header 'Authorization: Bearer <token>'
-```
-
-**Example response**
-
-```json 200
-{
-  "data": [
-    {
-      "id": "ar_01j8x2k9mn",
-      "user_id": "usr_4f7a2b1c",
-      "email": "alice@example.com",
-      "name": "Alice Dupont",
-      "role": "admin",
-      "assigned_at": "2024-03-01T10:00:00Z"
-    },
-    {
-      "id": "ar_02p3r5t7qw",
-      "user_id": "usr_9d3e6f0a",
-      "email": "bob@example.com",
-      "name": "Bob Martin",
-      "role": "manager",
-      "assigned_at": "2024-06-15T08:30:00Z"
-    }
-  ],
-  "total": 2
-}
-```
-
-## Assign a role to a user
-
-Add a user to the workspace and assign them a role.
-
-```bash cURL
-curl --request POST \
-  --url https://api.yume.cloud/access-rights \
-  --header 'Authorization: Bearer <token>' \
-  --header 'Content-Type: application/json' \
-  --data '{
-    "user_id": "usr_7c1d4e9b",
-    "role": "manager"
-  }'
-```
-
-**Example response**
-
-```json 201
-{
-  "id": "ar_03h6n8v2lx",
-  "user_id": "usr_7c1d4e9b",
-  "email": "carol@example.com",
-  "name": "Carol Jensen",
-  "role": "manager",
-  "assigned_at": "2026-04-09T11:15:00Z"
-}
-```
-
-## Update a user's role
-
-Change the role assigned to an existing access-rights record.
-
-```bash cURL
-curl --request PUT \
-  --url https://api.yume.cloud/access-rights/ar_03h6n8v2lx \
-  --header 'Authorization: Bearer <token>' \
-  --header 'Content-Type: application/json' \
-  --data '{
-    "role": "operator"
-  }'
-```
-
-**Example response**
-
-```json 200
-{
-  "id": "ar_03h6n8v2lx",
-  "user_id": "usr_7c1d4e9b",
-  "email": "carol@example.com",
-  "name": "Carol Jensen",
-  "role": "operator",
-  "updated_at": "2026-04-09T11:42:00Z"
-}
-```
-
-## Remove access
-
-Revoke a user's access to the workspace by deleting their access-rights record.
-
-```bash cURL
-curl --request DELETE \
-  --url https://api.yume.cloud/access-rights/ar_03h6n8v2lx \
-  --header 'Authorization: Bearer <token>'
-```
-
-**Example response**
-
-```json 204
-```
-
-The user is immediately denied access to the account.
+При `403` проверьте JWT, роль пользователя и ограничения по объекту (инвентарь, филиал и т.д.).

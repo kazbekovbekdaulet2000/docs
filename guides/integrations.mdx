@@ -1,77 +1,37 @@
 ---
-title: "Integrations"
-description: "How to connect Yume Cloud with third-party tools and services."
+title: "Интеграции"
+description: "Подключение внешних сервисов к Yume Cloud."
 ---
 
-Yume Cloud integrations let you sync data with external platforms — payment gateways, ERP systems, CRM tools, and more. Integrations use webhooks to push real-time event notifications to a URL of your choice whenever something happens in your account.
+Список интеграций и операции подключения находятся в **`/v1/crm/integrations/`**:
 
-## List configured integrations
+- `GET /v1/crm/integrations/` — доступные интеграции
+- `GET /v1/crm/integrations/{slug}/` — детали
+- `POST /v1/crm/integrations/{slug}/connect/` — подключение
+- `POST /v1/crm/integrations/{slug}/disconnect/` — отключение
 
-Retrieve all integrations currently set up on your account.
+Отдельные вендоры вынесены в подпути: **Binotel**, **Ringostat**, **Sipuni**, **Wazzup**, **Wialon**, геолокация и др. — см. дерево путей в OpenAPI.
 
-```bash cURL
+## Пример: список интеграций
+
+```bash
 curl --request GET \
-  --url https://api.yume.cloud/integrations \
-  --header 'Authorization: Bearer <your-access-token>'
+  --url 'https://api.yume.cloud/v1/crm/integrations/' \
+  --header 'Authorization: Bearer <access>'
 ```
 
-## Add an integration
+## Вебхуки
 
-Register a new webhook integration using `POST /integrations`. Provide the destination URL and the list of events you want to receive.
-
-<CodeGroup>
-
-```bash cURL
-curl --request POST \
-  --url https://api.yume.cloud/integrations \
-  --header 'Authorization: Bearer <your-access-token>' \
-  --header 'Content-Type: application/json' \
-  --data '{
-    "type": "webhook",
-    "url": "https://your-server.com/hook",
-    "events": ["rental.completed", "payment.received"]
-  }'
-```
-
-```json Response
-{
-  "id": "intg_3d7c1a9e",
-  "type": "webhook",
-  "url": "https://your-server.com/hook",
-  "events": ["rental.completed", "payment.received"],
-  "status": "active",
-  "created_at": "2026-04-09T12:00:00Z"
-}
-```
-
-</CodeGroup>
+У части интеграций есть отдельные webhook-эндпоинты (например Wazzup, Ringostat, Sipuni) — методы и секреты смотрите в спецификации и в консоли продукта.
 
 <Note>
-  When an event fires, Yume Cloud sends a `POST` request to your configured URL with a JSON body containing three fields: `event` (the event type string), `data` (the full resource object that triggered the event), and `timestamp` (an ISO 8601 string of when the event occurred).
+  Проверяйте подпись и источник входящих webhook-запросов перед обработкой в своей системе.
 </Note>
 
-## Supported events
+## Удаление / отключение
 
-| Event | Description |
-|-------|-------------|
-| `rental.created` | A new rental was created |
-| `rental.completed` | A rental was completed |
-| `rental.cancelled` | A rental was cancelled |
-| `payment.received` | A payment was recorded |
-| `invoice.overdue` | An invoice became overdue |
-
-## Delete an integration
-
-Remove an integration by its ID. Yume Cloud immediately stops sending webhook calls to the associated URL.
-
-```bash cURL
-curl --request DELETE \
-  --url https://api.yume.cloud/integrations/intg_3d7c1a9e \
-  --header 'Authorization: Bearer <your-access-token>'
-```
-
-A successful deletion returns `204 No Content`.
+Используйте `disconnect` для соответствующего `slug` или удаление ресурса, если оно описано в API.
 
 <Tip>
-  Verify incoming webhook signatures before processing payloads. Yume Cloud signs each webhook request — check the signature against your integration secret to confirm the request originated from Yume Cloud and has not been tampered with.
+  Храните токены и секреты интеграций в безопасном хранилище, не в репозитории.
 </Tip>

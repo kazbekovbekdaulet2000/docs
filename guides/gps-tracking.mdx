@@ -1,87 +1,41 @@
 ---
-title: "GPS tracking"
-description: "How to retrieve real-time and historical location data for your assets."
+title: "GPS и геолокация"
+description: "Устройства и координаты через интеграции."
 ---
 
-Yume Cloud's GPS API lets you query the current and historical location of tracked assets. Use it to monitor where rented equipment is in the field, verify returns, and build location-aware workflows.
+В спецификации Yume Cloud геоданные доступны через интеграции CRM, в частности:
+
+- **`/v1/crm/integrations/geolocation/devices/`** — устройства
+- **`/v1/crm/integrations/geolocation/devices/{device_id}/positions/`** — позиции
+- **`/v1/crm/integrations/geolocation/trips/`** — поездки
+- **`/v1/crm/integrations/wialon/...`** — учётные записи и юниты Wialon
 
 <Info>
-  GPS data is only available for assets with an active tracker device attached. If an asset has no tracker, location endpoints return a `404` for that asset.
+  Координаты есть только для объектов с привязанным трекером и настроенной интеграцией.
 </Info>
 
 <Steps>
-  <Step title="Get the current location">
-    Retrieve the latest known coordinates for an asset using `GET /gps/locations` with the `asset_id` query parameter.
-
-    <CodeGroup>
-
-    ```bash cURL
+  <Step title="Получите список устройств">
+    ```bash
     curl --request GET \
-      --url 'https://api.yume.cloud/gps/locations?asset_id=asset_xyz789' \
-      --header 'Authorization: Bearer <your-access-token>'
+      'https://api.yume.cloud/v1/crm/integrations/geolocation/devices/?page=1&pageSize=50' \
+      --header 'Authorization: Bearer <access>'
     ```
-
-    ```json Response
-    {
-      "asset_id": "asset_xyz789",
-      "lat": 51.5074,
-      "lon": -0.1278,
-      "timestamp": "2026-04-09T08:45:00Z"
-    }
-    ```
-
-    </CodeGroup>
-
-    The `timestamp` field reflects when the tracker last reported its position.
   </Step>
 
-  <Step title="Get location history">
-    Retrieve a time-bounded sequence of location records by adding `from` and `to` query parameters.
+  <Step title="Запросите позиции">
+    Используйте эндпоинт позиций для выбранного `device_id` (см. OpenAPI для параметров времени и пагинации).
 
-    <CodeGroup>
-
-    ```bash cURL
+    ```bash
     curl --request GET \
-      --url 'https://api.yume.cloud/gps/locations?asset_id=asset_xyz789&from=2026-04-01&to=2026-04-09' \
-      --header 'Authorization: Bearer <your-access-token>'
+      'https://api.yume.cloud/v1/crm/integrations/geolocation/devices/123/positions/' \
+      --header 'Authorization: Bearer <access>'
     ```
-
-    ```json Response
-    [
-      {
-        "asset_id": "asset_xyz789",
-        "lat": 51.5080,
-        "lon": -0.1290,
-        "timestamp": "2026-04-01T07:00:00Z"
-      },
-      {
-        "asset_id": "asset_xyz789",
-        "lat": 51.5074,
-        "lon": -0.1278,
-        "timestamp": "2026-04-05T13:30:00Z"
-      },
-      {
-        "asset_id": "asset_xyz789",
-        "lat": 51.5060,
-        "lon": -0.1265,
-        "timestamp": "2026-04-09T08:45:00Z"
-      }
-    ]
-    ```
-
-    </CodeGroup>
-
-    Records are returned in chronological order. Use the `from` and `to` parameters with ISO 8601 date strings (`YYYY-MM-DD`) to control the time window.
   </Step>
 
-  <Step title="Use location data in rentals">
-    GPS location data integrates naturally with the rental lifecycle:
-
-    - **Dispatch verification** — confirm an asset has left your depot before activating a rental.
-    - **In-field monitoring** — check that rented assets remain within an expected service area during the rental period.
-    - **Return confirmation** — verify an asset's last recorded position matches your return location before marking a rental as `completed`.
-    - **Dispute resolution** — use historical location records as an audit trail if a client disputes usage or damage.
-
-    Query `GET /gps/locations?asset_id={id}` at any point during the rental using the asset ID returned in the rental record.
+  <Step title="Связь с арендой">
+    Сопоставляйте устройство с единицей инвентаря или сделкой в вашей учётной логике, используя идентификаторы из CRM.
   </Step>
 </Steps>
+
+Подробные поля ответа — только в актуальной OpenAPI.

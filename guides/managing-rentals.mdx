@@ -1,149 +1,54 @@
 ---
-title: "Managing rentals"
-description: "How to create, update, and close rentals using the Yume Cloud API."
+title: "Управление арендой"
+description: "Создание, обновление и закрытие аренды через API."
 ---
 
-This guide covers the full rental lifecycle — from creating a new rental through activation, completion, and cancellation.
+Потоки проката в Yume Cloud реализованы через ресурсы CRM и инвентаря (`/v1/crm/...`). Точные пути и поля смотрите в OpenAPI — ниже приведена **концептуальная** последовательность.
 
 <Steps>
-  <Step title="Create a rental">
-    Send a `POST /rentals` request with the asset ID, client ID, and rental dates.
+  <Step title="Создайте сущности клиента и инвентаря">
+    Убедитесь, что в системе есть клиент (`/v1/crm/clients/`) и единица инвентаря/группа (`/v1/crm/inventories/`, `/v1/crm/groups/` — по вашей модели).
+  </Step>
 
-    <CodeGroup>
+  <Step title="Оформите выдачу (сделку)">
+    Создайте запись сделки/выдачи согласно вашему процессу (см. соответствующие `POST` в спецификации). Пример заголовков:
 
-    ```bash cURL
+    ```bash
     curl --request POST \
-      --url https://api.yume.cloud/rentals \
-      --header 'Authorization: Bearer <your-access-token>' \
+      --url 'https://api.yume.cloud/v1/crm/...' \
+      --header 'Authorization: Bearer <access>' \
       --header 'Content-Type: application/json' \
-      --data '{
-        "asset_id": "asset_xyz789",
-        "client_id": "client_abc123",
-        "start_date": "2026-04-10",
-        "end_date": "2026-04-20"
-      }'
+      --data '{ ... }'
     ```
 
-    ```json Response
-    {
-      "id": "rent_4f8a1c2d",
-      "status": "created",
-      "asset_id": "asset_xyz789",
-      "client_id": "client_abc123",
-      "start_date": "2026-04-10",
-      "end_date": "2026-04-20",
-      "created_at": "2026-04-09T10:00:00Z"
-    }
-    ```
-
-    </CodeGroup>
-
-    Save the `id` value from the response — you'll use it in subsequent requests.
+    Сохраните `id` из ответа для следующих шагов.
   </Step>
 
-  <Step title="Activate a rental">
-    Once you're ready to begin the rental, update its status to `active`.
-
-    <CodeGroup>
-
-    ```bash cURL
-    curl --request PUT \
-      --url https://api.yume.cloud/rentals/rent_4f8a1c2d \
-      --header 'Authorization: Bearer <your-access-token>' \
-      --header 'Content-Type: application/json' \
-      --data '{
-        "status": "active"
-      }'
-    ```
-
-    ```json Response
-    {
-      "id": "rent_4f8a1c2d",
-      "status": "active",
-      "asset_id": "asset_xyz789",
-      "client_id": "client_abc123",
-      "start_date": "2026-04-10",
-      "end_date": "2026-04-20",
-      "updated_at": "2026-04-10T09:00:00Z"
-    }
-    ```
-
-    </CodeGroup>
+  <Step title="Переведите статус в «активно»">
+    Когда объект передан клиенту, обновите статус сущности через `PATCH`/`PUT` на соответствующий ресурс (поля статуса — в схеме OpenAPI).
   </Step>
 
-  <Step title="List active rentals">
-    Retrieve all rentals currently in `active` status using the `status` query parameter.
-
-    <CodeGroup>
-
-    ```bash cURL
-    curl --request GET \
-      --url 'https://api.yume.cloud/rentals?status=active' \
-      --header 'Authorization: Bearer <your-access-token>'
-    ```
-
-    ```json Response
-    [
-      {
-        "id": "rent_4f8a1c2d",
-        "status": "active",
-        "asset_id": "asset_xyz789",
-        "client_id": "client_abc123",
-        "start_date": "2026-04-10",
-        "end_date": "2026-04-20",
-        "created_at": "2026-04-09T10:00:00Z"
-      },
-      {
-        "id": "rent_7b3e9d1a",
-        "status": "active",
-        "asset_id": "asset_pqr456",
-        "client_id": "client_def456",
-        "start_date": "2026-04-08",
-        "end_date": "2026-04-15",
-        "created_at": "2026-04-07T08:30:00Z"
-      }
-    ]
-    ```
-
-    </CodeGroup>
+  <Step title="Получите список активных сделок">
+    Используйте `GET` с фильтрами `page`, `pageSize` и параметрами фильтрации из спецификации для нужного списка (клиенты, инвентарь, заказы).
 
     <Tip>
-      You can filter rentals by `status`, `client_id`, `asset_id`, `start_date`, and `end_date` query parameters. Combine them to narrow results — for example, `?status=active&client_id=client_abc123`.
+      Комбинируйте query-параметры, чтобы сузить выборку (например, по клиенту или статусу).
     </Tip>
   </Step>
 
-  <Step title="Complete a rental">
-    When the rental period ends, mark it as `completed`. This triggers automatic invoice generation for the rental.
-
-    ```bash cURL
-    curl --request PUT \
-      --url https://api.yume.cloud/rentals/rent_4f8a1c2d \
-      --header 'Authorization: Bearer <your-access-token>' \
-      --header 'Content-Type: application/json' \
-      --data '{
-        "status": "completed"
-      }'
-    ```
-
-    After the update, an invoice is created and linked to the rental. Use `GET /billing?rental_id=rent_4f8a1c2d` to retrieve it.
+  <Step title="Завершите аренду">
+    Переведите запись в конечный статус (завершено). Обычно это инициирует биллинг/документы — проверьте счета в `/v1/billing/invoices/`.
   </Step>
 
-  <Step title="Cancel a rental">
-    To cancel a rental before it is completed, set the status to `cancelled`. You can include an optional `reason` field.
-
-    ```bash cURL
-    curl --request PUT \
-      --url https://api.yume.cloud/rentals/rent_4f8a1c2d \
-      --header 'Authorization: Bearer <your-access-token>' \
-      --header 'Content-Type: application/json' \
-      --data '{
-        "status": "cancelled",
-        "reason": "Client requested cancellation"
-      }'
-    ```
+  <Step title="Отмена">
+    При отмене укажите причину в теле запроса, если схема это допускает.
 
     <Warning>
-      Cancellation may trigger cancellation fees depending on your business policy. Review your account's billing rules before cancelling an active rental.
+      При отмене могут применяться штрафы по правилам тенанта — уточните политику у администратора.
     </Warning>
   </Step>
 </Steps>
+
+## Где смотреть детали
+
+Полный перечень эндпоинтов — в **OpenAPI** (после `bash scripts/sync-openapi.sh` — полный файл спецификации).

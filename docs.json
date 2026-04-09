@@ -1,11 +1,12 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "Yume Cloud",
-  "theme": "luma",
+  "theme": "aspen",
+  "openapi": "api-reference/yume-cloud-openapi.yaml",
   "colors": {
-    "primary": "#6C3CE1",
+    "primary": "#A165FD",
     "light": "#EDE8FB",
-    "dark": "#3B1FA8"
+    "dark": "#151324"
   },
   "navbar": {
     "primary": {
@@ -16,18 +17,19 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Документация",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Начало работы",
             "pages": [
+              "index",
               "introduction",
               "authentication",
               "quickstart"
             ]
           },
           {
-            "group": "Core Concepts",
+            "group": "Основные понятия",
             "pages": [
               "concepts/rentals",
               "concepts/transactions",
@@ -35,7 +37,7 @@
             ]
           },
           {
-            "group": "Guides",
+            "group": "Руководства",
             "pages": [
               "guides/managing-rentals",
               "guides/processing-payments",
@@ -44,7 +46,7 @@
             ]
           },
           {
-            "group": "Configuration",
+            "group": "Настройка",
             "pages": [
               "configuration/settings",
               "configuration/access-rights",
@@ -54,17 +56,17 @@
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "Справочник API",
         "groups": [
           {
-            "group": "Overview",
+            "group": "Обзор",
             "pages": [
               "api-reference/overview",
               "api-reference/authentication"
             ]
           },
           {
-            "group": "Resources",
+            "group": "Ресурсы",
             "pages": [
               "api-reference/rentals",
               "api-reference/sales",
