@@ -30,12 +30,20 @@
         },
         {
           "anchor": "WhatsApp",
-          "icon": "message-circle",
+          "icon": "circle-phone",
+          "color": {
+            "light": "#25D366",
+            "dark": "#25D366"
+          },
           "href": "https://wa.me/77077121500"
         },
         {
           "anchor": "App Store",
           "icon": "apple",
+          "color": {
+            "light": "#0066CC",
+            "dark": "#0066CC"
+          },
           "href": "https://apps.apple.com/kz/app/yume-cloud/id6749707587"
         },
         {
@@ -115,7 +123,6 @@
           }
         ]
       }
-    ],
-    "languages": ["ru"]
+    ]
   }
 }
