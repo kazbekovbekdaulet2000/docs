@@ -1,0 +1,92 @@
+---
+title: "Главная страница"
+description: "Портал документации Yume Cloud: обзор платформы и навигация по разделам."
+mode: "wide"
+---
+
+[**yume.cloud**](http://yume.cloud) — платформа для арендного бизнеса в разных нишах: backend-ядро с бизнес-логикой, данными клиентов и интеграциями. Фокус — масштабируемость, изоляция тенантов и подключение новых интеграций без переписывания ядра.
+
+**Возможности:** мультитенантность, CRM и инвентарь, биллинг и аналитика, GPS и телематика, интеграции (SMS, OKAuto, Wazzup и др.), склад, воронка продаж и заявок.
+
+<Tip>
+  Откройте **поиск по документации** (**⌘K** на Mac или **Ctrl\+K** на Windows и Linux) и введите название раздела или эндпоинта — как в вики.
+</Tip>
+
+## Популярные разделы
+
+<CardGroup cols={3}>
+  <Card title="Быстрый старт" icon="rocket" href="/ru/quickstart">
+    Первый запрос к API
+  </Card>
+
+  <Card title="Справочник API" icon="code" href="/ru/api-reference/overview">
+    Эндпоинты и OpenAPI
+  </Card>
+
+  <Card title="Введение" icon="book-open" href="/ru/introduction">
+    Обзор платформы и API
+  </Card>
+</CardGroup>
+
+## Каталог по темам
+
+<Columns cols={2}>
+  <Column>
+    ### Начало работы
+
+    - [Введение](/ru/introduction) — обзор платформы и сценариев
+    - [Аутентификация](/ru/authentication) — логин, access и refresh
+    - [Быстрый старт](/ru/quickstart) — пример входа и запроса
+
+    ### Основные понятия
+
+    - [Аренда](/ru/concepts/rentals) — жизненный цикл проката
+    - [Транзакции](/ru/concepts/transactions) — платежи и записи
+    - [Биллинг](/ru/concepts/billing) — счета и оплата
+
+    ### Руководства
+
+    - [Управление арендой](/ru/guides/managing-rentals)
+    - [Обработка платежей](/ru/guides/processing-payments)
+    - [GPS и трекинг](/ru/guides/gps-tracking)
+    - [Интеграции](/ru/guides/integrations)
+  </Column>
+  <Column>
+    ### Настройка
+
+    - [Настройки](/ru/configuration/settings)
+    - [Права доступа](/ru/configuration/access-rights)
+    - [Уведомления](/ru/configuration/notifications)
+
+    ### Справочник API — обзор
+
+    - [Обзор API](/ru/api-reference/overview) — базовый URL, ошибки, пагинация
+    - [Аутентификация в API](/ru/api-reference/authentication)
+
+    ### Справочник API — ресурсы
+
+    - [Аренда](/ru/api-reference/rentals) · [Продажи](/ru/api-reference/sales) · [Транзакции](/ru/api-reference/transactions)
+    - [Аналитика](/ru/api-reference/analytics) · [Биллинг](/ru/api-reference/billing)
+    - [Документы](/ru/api-reference/documents) · [Вложения](/ru/api-reference/attachments)
+    - [GPS](/ru/api-reference/gps) · [Уведомления](/ru/api-reference/notifications)
+    - [Мастерская](/ru/api-reference/workshop) · [Склад](/ru/api-reference/store)
+    - [Интеграции](/ru/api-reference/integrations) · [Права доступа](/ru/api-reference/access-rights)
+  </Column>
+</Columns>
+
+## Краткий путь к API
+
+<Steps>
+  <Step title="Получите JWT">
+    Вызовите `POST /v1/auth/login/` с логином и паролем и сохраните `access` (и при необходимости `refresh`).
+  </Step>
+  <Step title="Добавьте заголовок Authorization">
+    Передавайте `Authorization: Bearer` и ваш access-токен во всех защищённых запросах.
+  </Step>
+  <Step title="Работайте с CRM и биллингом">
+    Клиенты, инвентарь, группы, сделки и счета — префикс `/v1/`; детали в OpenAPI.
+  </Step>
+  <Step title="Подключайте интеграции">
+    Телефония, мессенджеры, Wialon и другие — раздел `/v1/crm/integrations/...`.
+  </Step>
+</Steps>

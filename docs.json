@@ -71,15 +71,8 @@
           {
             "tab": "Документация",
             "pages": [
-              {
-                "group": "Начало работы",
-                "pages": [
-                  "ru/index",
-                  "ru/introduction",
-                  "ru/authentication",
-                  "ru/quickstart"
-                ]
-              },
+              "ru",
+              "ru/main",
               {
                 "group": "Основные понятия",
                 "pages": [
@@ -103,6 +96,31 @@
                   "ru/configuration/access",
                   "ru/configuration/notifications"
                 ]
+              }
+            ]
+          },
+          {
+            "tab": "Гайды",
+            "dropdowns": [
+              {
+                "dropdown": "Как подключить модуль"
+              },
+              {
+                "dropdown": "Как создать клиента"
+              },
+              {
+                "dropdown": "Как создать товар"
+              },
+              {
+                "dropdown": "Как создать аренду"
+              }
+            ]
+          },
+          {
+            "tab": "Q/A",
+            "menu": [
+              {
+                "item": "Вопросы"
               }
             ]
           },
