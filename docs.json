@@ -76,7 +76,6 @@
               {
                 "group": "Основные понятия",
                 "pages": [
-                  "ru/concepts/rent",
                   "ru/concepts/client",
                   "ru/concepts/rental-point",
                   "ru/concepts/category",
@@ -100,19 +99,50 @@
             ]
           },
           {
+            "tab": "Модули и Интеграции",
+            "pages": [
+              {
+                "group": "Аренда",
+                "pages": [
+                  "ru/modules/rent"
+                ]
+              },
+              {
+                "group": "Аренда инвентарей",
+                "pages": []
+              },
+              {
+                "group": "Аренда транспорта",
+                "pages": []
+              },
+              {
+                "group": "Продажа",
+                "pages": [
+                  "sklad",
+                  "oprikhodyvanie",
+                  "analitika"
+                ]
+              },
+              {
+                "group": "Документы",
+                "pages": []
+              }
+            ]
+          },
+          {
             "tab": "Гайды",
-            "menu": [
+            "products": [
               {
-                "item": "Как подключить модуль"
+                "product": "Как подключить модуль"
               },
               {
-                "item": "Как создать клиента"
+                "product": "Как создать клиента"
               },
               {
-                "item": "Как создать товар"
+                "product": "Как создать товар"
               },
               {
-                "item": "Как создать аренду"
+                "product": "Как создать аренду"
               }
             ]
           },
