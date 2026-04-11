@@ -2,12 +2,6 @@
 
 Контент сайта на **русском языке**. Интерактивная спецификация OpenAPI подключается в `docs.json` (`openapi`: `api-reference/yume-cloud-openapi.yaml`).
 
-Чтобы подставить **полный** экспорт OpenAPI (как в `Yume Cloud API (3).yaml`), выполните из корня репозитория:
-
-```bash
-bash scripts/sync-openapi.sh
-```
-
 По умолчанию скрипт копирует файл из `~/Downloads/Yume Cloud API (3).yaml`.
 
 ---
