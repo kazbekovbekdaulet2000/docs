@@ -131,19 +131,11 @@
           },
           {
             "tab": "Гайды",
-            "products": [
-              {
-                "product": "Как подключить модуль"
-              },
-              {
-                "product": "Как создать клиента"
-              },
-              {
-                "product": "Как создать товар"
-              },
-              {
-                "product": "Как создать аренду"
-              }
+            "pages": [
+              "ru/guides/integrations",
+              "ru/guides/client",
+              "ru/guides/product",
+              "ru/guides/rent"
             ]
           },
           {
