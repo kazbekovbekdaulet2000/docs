@@ -70,6 +70,7 @@
         "tabs": [
           {
             "tab": "Документация",
+            "icon": "file-doc",
             "pages": [
               "ru/obschee",
               "ru",
@@ -101,19 +102,25 @@
           },
           {
             "tab": "Модули и Интеграции",
+            "icon": "compress",
             "pages": [
               {
-                "group": "Аренда",
+                "group": "Аренды",
+                "icon": "laptop-arrow-down",
                 "pages": [
+                  "ru/modules/arendy-inventari",
+                  "ru/modules/arendy",
                   "ru/modules/rent"
                 ]
               },
               {
                 "group": "Аренда инвентарей",
+                "hidden": true,
                 "pages": []
               },
               {
                 "group": "Аренда транспорта",
+                "hidden": true,
                 "pages": []
               },
               {
