@@ -80,13 +80,6 @@
                   "ru/modules/katalog",
                   "ru/modules/klient",
                   "ru/modules/analitika",
-                  "ru/modules/finansy",
-                  "ru/modules/proverka-kontragenta",
-                  "ru/modules/untitled-page",
-                  "ru/modules/untitled-page-1",
-                  "ru/modules/untitled-page-2",
-                  "ru/modules/untitled-page-3",
-                  "ru/modules/dostavka",
                   "ru/modules/nastroyki"
                 ]
               },
@@ -97,22 +90,24 @@
                   "ru/modules/arendy",
                   "ru/modules/untitled-page-5",
                   "drivers",
-                  "ru/modules/analitika-copied-1",
                   "ru/modules/masterskaya",
-                  "ru/modules/finansy-copied-1",
-                  "ru/modules/untitled-page-copied-1",
-                  "ru/modules/proverka-kontragenta-copied-1",
-                  "ru/modules/untitled-page-2-copied-1",
-                  "ru/modules/dostavka-copied-1",
+                  "ru/modules/analitika-copied-1",
                   "ru/modules/nastroyki-copied-2"
                 ]
               },
+              "ru/concepts/market",
               {
                 "group": "Интеграции",
                 "icon": "object-intersect",
                 "pages": [
                   "wazzup",
+                  "ru/modules/proverka-kontragenta-copied-1",
+                  "ru/modules/finansy-copied-1",
+                  "ru/modules/untitled-page-copied-1",
                   "ringostat",
+                  "ru/modules/untitled-page-3",
+                  "ru/modules/untitled-page-2-copied-1",
+                  "ru/modules/dostavka-copied-1",
                   "kaspi-platezhi",
                   "wialon"
                 ]
@@ -172,8 +167,7 @@
                   "ru/configuration/access",
                   "ru/configuration/notifications"
                 ]
-              },
-              "ru/concepts/market"
+              }
             ]
           },
           {
