@@ -129,14 +129,25 @@
                 "icon": "car",
                 "pages": [
                   "ru/modules/arendy",
+                  "ru/modules/untitled-page-5",
                   "klient-copied-1",
-                  "ru/modules/finansy-copied-1"
+                  "ru/modules/finansy-copied-1",
+                  "ru/modules/untitled-page-copied-1",
+                  "ru/modules/masterskaya",
+                  "ru/modules/proverka-kontragenta-copied-1",
+                  "ru/modules/untitled-page-2-copied-1",
+                  "ru/modules/dostavka-copied-1"
                 ]
               },
               {
                 "group": "Интеграции",
                 "icon": "object-intersect",
-                "pages": []
+                "pages": [
+                  "wazzup",
+                  "ringostat",
+                  "kaspi-platezhi",
+                  "wialon"
+                ]
               },
               {
                 "group": "Продажа",
