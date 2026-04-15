@@ -72,6 +72,7 @@
             "tab": "Онбординг",
             "icon": "compress",
             "pages": [
+              "ru/obschee",
               {
                 "group": "Управление арендами - Инвентари",
                 "icon": "laptop-arrow-down",
@@ -139,7 +140,6 @@
             "tab": "Документация",
             "icon": "file-doc",
             "pages": [
-              "ru/obschee",
               "ru/main",
               "ru",
               {
