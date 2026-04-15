@@ -70,7 +70,7 @@
         "tabs": [
           {
             "tab": "Онбординг",
-            "icon": "compress",
+            "icon": "person-chalkboard",
             "pages": [
               "ru/obschee",
               {
@@ -139,6 +139,7 @@
           {
             "tab": "Документация",
             "icon": "file-doc",
+            "hidden": true,
             "pages": [
               "ru/main",
               "ru",
