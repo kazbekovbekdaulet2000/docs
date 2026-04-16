@@ -31,38 +31,6 @@
     ]
   },
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Telegram",
-          "icon": "send",
-          "href": "https://t.me/yumecloud"
-        },
-        {
-          "anchor": "WhatsApp",
-          "icon": "circle-phone",
-          "color": {
-            "light": "#25D366",
-            "dark": "#25D366"
-          },
-          "href": "https://wa.me/77077121500"
-        },
-        {
-          "anchor": "App Store",
-          "icon": "apple",
-          "color": {
-            "light": "#0066CC",
-            "dark": "#0066CC"
-          },
-          "href": "https://apps.apple.com/kz/app/yume-cloud/id6749707587"
-        },
-        {
-          "anchor": "Google Play",
-          "icon": "play",
-          "href": "https://play.google.com/store/apps/details?id=com.kazbekovv.yumeweb"
-        }
-      ]
-    },
     "languages": [
       {
         "language": "ru",
@@ -190,6 +158,42 @@
           {
             "tab": "Справочник API",
             "openapi": "api/open-api.json"
+          },
+          {
+            "tab": "Контакты",
+            "icon": "phone",
+            "global": {
+              "anchors": [
+                {
+                  "anchor": "Telegram",
+                  "icon": "send",
+                  "href": "https://t.me/yumecloud"
+                },
+                {
+                  "anchor": "WhatsApp",
+                  "icon": "circle-phone",
+                  "color": {
+                    "light": "#25D366",
+                    "dark": "#25D366"
+                  },
+                  "href": "https://wa.me/77077121500"
+                },
+                {
+                  "anchor": "App Store",
+                  "icon": "apple",
+                  "color": {
+                    "light": "#0066CC",
+                    "dark": "#0066CC"
+                  },
+                  "href": "https://apps.apple.com/kz/app/yume-cloud/id6749707587"
+                },
+                {
+                  "anchor": "Google Play",
+                  "icon": "play",
+                  "href": "https://play.google.com/store/apps/details?id=com.kazbekovv.yumeweb"
+                }
+              ]
+            }
           }
         ]
       }
