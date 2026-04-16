@@ -5,6 +5,11 @@
         "version": "2.0.1",
         "description": "V1"
     },
+    "servers": [
+        {
+            "url": "https://api.yume.cloud"
+        }
+    ],
     "paths": {
         "/v1/attachments/comments/": {
             "get": {
@@ -77735,14 +77740,9 @@
             }
         },
         "securitySchemes": {
-            "basicAuth": {
+            "bearerAuth": {
                 "type": "http",
-                "scheme": "basic"
-            },
-            "cookieAuth": {
-                "type": "apiKey",
-                "in": "cookie",
-                "name": "sessionid"
+                "scheme": "bearer"
             }
         }
     }
