@@ -109,6 +109,7 @@
           {
             "tab": "Q/A",
             "pages": [
+              "ru/qa/obschie-voprosy",
               "ru/qa/nachalo-raboty",
               "ru/qa/arendy-i-zayavki",
               "ru/qa/inventar-i-transport",
@@ -117,6 +118,7 @@
               "ru/qa/analitika",
               "ru/qa/polzovateli-i-dostupy",
               "ru/qa/nastroyki-i-kastomizatsiya",
+              "ru/qa/magazin",
               "ru/qa/integratsiya"
             ]
           },
