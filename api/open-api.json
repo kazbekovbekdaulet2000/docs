@@ -60641,13 +60641,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -60672,13 +60672,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -60703,13 +60703,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -60734,13 +60734,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -60765,13 +60765,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -60796,13 +60796,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -60827,13 +60827,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -60858,13 +60858,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -60889,13 +60889,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -60920,13 +60920,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -60951,13 +60951,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -60982,13 +60982,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61013,13 +61013,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61044,13 +61044,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61075,13 +61075,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61106,13 +61106,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61137,13 +61137,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61168,13 +61168,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61199,13 +61199,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61230,13 +61230,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61261,13 +61261,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61292,13 +61292,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61323,13 +61323,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61354,13 +61354,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61385,13 +61385,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61416,13 +61416,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61447,13 +61447,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61478,13 +61478,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61509,13 +61509,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61540,13 +61540,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61571,13 +61571,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61602,13 +61602,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61633,13 +61633,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61664,13 +61664,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61695,13 +61695,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61726,13 +61726,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61757,13 +61757,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61788,13 +61788,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61819,13 +61819,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61850,13 +61850,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61881,13 +61881,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61912,13 +61912,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61943,13 +61943,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -61974,13 +61974,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62005,13 +62005,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62036,13 +62036,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62067,13 +62067,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62098,13 +62098,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62129,13 +62129,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62160,13 +62160,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62191,13 +62191,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62222,13 +62222,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62253,13 +62253,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62284,13 +62284,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62315,13 +62315,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62346,13 +62346,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62377,13 +62377,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62408,13 +62408,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62439,13 +62439,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62470,13 +62470,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62501,13 +62501,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62532,13 +62532,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62563,13 +62563,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62594,13 +62594,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62625,13 +62625,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62656,13 +62656,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62687,13 +62687,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62718,13 +62718,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62749,13 +62749,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62780,13 +62780,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62811,13 +62811,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62842,13 +62842,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62873,13 +62873,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62904,13 +62904,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62935,13 +62935,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62966,13 +62966,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -62997,13 +62997,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -63028,13 +63028,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -63059,13 +63059,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -63090,13 +63090,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -63121,13 +63121,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -63152,13 +63152,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -63183,13 +63183,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -63214,13 +63214,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
@@ -63245,13 +63245,13 @@
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=4"
+                        "example": "http://api.yume.cloud/accounts/?page=4"
                     },
                     "previous": {
                         "type": "string",
                         "nullable": true,
                         "format": "uri",
-                        "example": "http://api.example.org/accounts/?page=2"
+                        "example": "http://api.yume.cloud/accounts/?page=2"
                     },
                     "results": {
                         "type": "array",
