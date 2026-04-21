@@ -60,7 +60,7 @@
                   "ru/modules/obschee",
                   "ru/modules/arendy",
                   "ru/modules/garazh",
-                  "drivers",
+                  "ru/models/drivers",
                   "ru/modules/analitika-copied-1",
                   "ru/modules/nastroyki-copied-2"
                 ]
