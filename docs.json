@@ -87,6 +87,7 @@
           {
             "tab": "Как это работает",
             "icon": "diagram-project",
+            "hidden": true,
             "groups": [
               {
                 "group": "Обзор",
@@ -357,6 +358,7 @@
           {
             "tab": "Глоссарии",
             "icon": "book",
+            "hidden": true,
             "groups": [
               {
                 "group": "Финансы и оплаты",

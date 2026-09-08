@@ -47,14 +47,21 @@ one publishes it to crawlers as well as to readers.
 
 | What | Where |
 | --- | --- |
-| Known issues and limitations — 17 pages | `docs.json` group «Известные особенности и ограничения» (`ru/logic/known-issues` plus each module's `issues.mdx`) |
+| Business-logic breakdown — 153 pages | `docs.json` tab «Как это работает» (everything under `ru/logic/`) |
+| Field references — 110 pages | `docs.json` tab «Глоссарии» (the `*-glossary` pages under `ru/logic/`) |
+| Known issues and limitations — 17 pages | `docs.json` group «Известные особенности и ограничения», inside the «Как это работает» tab (`ru/logic/known-issues` plus each module's `issues.mdx`) |
 | Older concept and configuration pages | `docs.json` tab «Документация» (`ru`, `ru/main`, `ru/concepts/client`, `ru/concepts/rental-point`, `ru/configuration/access`) |
 | Superseded rental overview | `docs.json` group «Аренда», root `ru/modules/rent` — the current page is `ru/modules/inventory-rentals` |
+
+The «Как это работает» and «Глоссарии» tabs are written for the team, not for
+customers: the tabs carry `"hidden": true` and every page under them carries
+`hidden: true` in frontmatter. New pages added to those tabs need the frontmatter
+flag too, or they leak into site search.
 
 ### llms.txt
 
 `llms.txt` is hand-maintained, not generated. It lists public pages only and
-deliberately omits two things, as its own header states: internal technical
-sections, and the «Глоссарии» field references, which are written for
-developers. Note that glossaries *are* visible in site navigation — they are
-excluded from `llms.txt` only. Keep new entries consistent with that split.
+deliberately omits the internal sections named above, as its own header states —
+including the whole «Как это работает» breakdown and the «Глоссарии» field
+references, which are written for developers. Keep new entries consistent with
+that split: if a page is hidden from navigation, it does not belong in `llms.txt`.
